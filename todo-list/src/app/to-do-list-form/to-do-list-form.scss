@@ -1,0 +1,23 @@
+:host{
+    margin-top: auto;
+    border-radius: 2px;
+    margin-top: 1rem;
+
+    display: flex;
+    justify-content: space-between;
+
+    .form-input {
+        padding: 1rem;
+        width: 100%;
+    }
+    
+    .form-button {
+        padding: 1rem;
+        min-width: 6rem;
+        margin-left: 0.5rem;
+        background-color: #b694eb;
+        color: white;
+        border-width: 0;
+        border-radius: 2px;
+    }
+}

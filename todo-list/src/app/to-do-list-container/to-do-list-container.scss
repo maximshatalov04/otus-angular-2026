@@ -1,0 +1,10 @@
+:host{
+
+    width:100%;
+    flex: 0 1 auto; 
+
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* высота контейнера на весь экран */
+    justify-content: flex-start;
+}

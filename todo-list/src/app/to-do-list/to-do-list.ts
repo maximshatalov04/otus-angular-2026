@@ -17,8 +17,7 @@ export interface ToDoItem {
 })
 
 export class ToDoList {
-
-  readonly todos = signal<ToDoItem[]> ([
+  todos = signal<ToDoItem[]> ([
     { id: 1, text: 'Lorem ipsum dolor sit amet consectetur.' },
     { id: 2, text: 'Reprehenderit magnam nobis tempore ratione quasi?' },
     { id: 3, text: 'Ipsum delectus dicta reprehenderit illum enim!?' },
@@ -28,11 +27,9 @@ export class ToDoList {
   readonly isEmpty = computed(() => this.todos()?.length === 0);
 
   onItemDeleted(itemId: number) {
-    const currentList = this.todos();
-    const updatedList = currentList?.filter(item => item.id !== itemId);
-    
-    // Обновляем сигнал новым значением
-    this.todos.set(updatedList);
+     this.todos.update(currentItems => 
+        currentItems.filter(item => item.id !== itemId)
+      );
   };
 
   onTaskToAdd(task: string) {
@@ -42,12 +39,10 @@ export class ToDoList {
           ? 0 
           : currentList.reduce((max, item) => (item.id > max ? item.id : max), 0);
     
+        const newItem = { id: maxId + 1, text: task.trim()};
         this.todos.update(list => [
           ...list,
-          { id: maxId + 1, text: task.trim()}
+          newItem
         ]);
-      
-       console.log("Task added: ", task);
-       this.todos.set(currentList);
   }
 }

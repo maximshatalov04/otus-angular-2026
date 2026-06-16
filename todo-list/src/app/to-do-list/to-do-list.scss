@@ -1,14 +1,43 @@
 :host {
     width: 360px;
-    max-height: 70vh;
     min-height: 40vh;
     background: white;
-    border-radius: 1rem; /* радиус скругления углов */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* тень */
-    padding: 1.5rem; 
+    border-radius: 1rem;
+    /* радиус скругления углов */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    /* тень */
+    padding: 1.5rem;
 
     display: flex;
     flex-direction: column;
-    height: 100vh; /* высота контейнера на весь экран */
     justify-content: space-between;
+
+    ::ng-deep .button {
+        margin-left: 0.5rem;
+        background-color: #b694eb;
+        color: white;
+        border-width: 0;
+        border-radius: 2px;
+        padding: 0.5rem;
+    }
+
+    ::ng-deep .button--disabled {
+        opacity: 0.5;
+    }
+
+    ::ng-deep .button--add {
+        background-color: #45c86a;
+        min-width: 6rem;
+        :hover{
+            background-color: #3aa658;
+        }
+    }
+    ::ng-deep .button--delete {
+        padding-bottom: 0.2rem;
+        padding-top: 0.2rem;
+        background-color: #c73131;
+        :hover{
+            background-color: #9b2626;
+        }
+    }
 }

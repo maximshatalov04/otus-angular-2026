@@ -1,10 +1,16 @@
 :host {
     background-color: lightgray;
     border-radius: 2px;
-    padding-left: 1rem;
-    padding-right: 1rem;
     margin-top: 1rem;
+    padding: 1rem;
 
     display: flex;
     justify-content: space-between;
+
+    span{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 90%;
+    }
 }

@@ -1,4 +1,8 @@
 <app-to-do-list-title/>
-<app-to-do-list-container/>
-<app-to-do-list-form/>
-
+<app-to-do-list-container 
+   [todos]="todos()"
+   (itemIdToDelete)="onItemDeleted($event)" />
+<app-to-do-list-form
+   [isDisabled]="isEmpty()"
+   (taskToAdd)="onTaskToAdd($event)"
+   />

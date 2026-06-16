@@ -1,2 +1,8 @@
-<input class="form-input" type = "text" [(ngModel)]="task" placeholder="Add your new ToDo">
-<button class="form-button">Add task</button>
+<mat-form-field appearance="outline" class="form-field">
+    <input class="form-input" matInput type = "text" [(ngModel)]="task" placeholder="Add your new ToDo">
+</mat-form-field>
+
+<button class="button button--add" 
+    [class.button--disabled] = isDisabled()
+    (click)="onItemAdded()">Add task
+</button>

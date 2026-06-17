@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -11,18 +11,23 @@ import { MatInputModule } from '@angular/material/input';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToDoListForm {
-  task: string | undefined;
-  readonly isDisabled = input.required<boolean>();
   readonly taskToAdd = output<string>();
+  newTaskText = signal<string>('');
+  readonly isDisabled = computed(()=> 
+    this.isEmpty(this.newTaskText())
+  );
 
   onItemAdded() {
-    const text = this.task;
-    if (!text || !text.trim()) {
+    const text = this.newTaskText();
+    if (this.isEmpty(text)) {
       return; 
     }
 
-    console.log(text);
     this.taskToAdd.emit(text);
-    this.task = "";
+    this.newTaskText.set('');
+  }
+
+  isEmpty(text:string){
+    return !text || !text.trim(); 
   }
 }

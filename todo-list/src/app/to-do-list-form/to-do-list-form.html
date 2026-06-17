@@ -1,8 +1,14 @@
 <mat-form-field appearance="outline" class="form-field">
-    <input class="form-input" matInput type = "text" [(ngModel)]="task" placeholder="Add your new ToDo">
+    <input 
+        class="form-input" 
+        matInput 
+        type = "text" 
+        [ngModel]="newTaskText()" 
+        (ngModelChange)="newTaskText.set($event)"
+        placeholder="Add your new ToDo">
 </mat-form-field>
 
 <button class="button button--add" 
-    [class.button--disabled] = isDisabled()
+    [disabled] = isDisabled()
     (click)="onItemAdded()">Add task
 </button>

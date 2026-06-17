@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { ToDoListTitle } from '../to-do-list-title/to-do-list-title';
 import { ToDoListForm } from '../to-do-list-form/to-do-list-form';
 import { ToDoListContainer } from '../to-do-list-container/to-do-list-container';
@@ -23,8 +23,6 @@ export class ToDoList {
     { id: 3, text: 'Ipsum delectus dicta reprehenderit illum enim!?' },
     { id: 4, text: 'Eum explicabo quaerat reprehenderit?' },
   ]);
-
-  readonly isEmpty = computed(() => this.todos()?.length === 0);
 
   onItemDeleted(itemId: number) {
      this.todos.update(currentItems => 

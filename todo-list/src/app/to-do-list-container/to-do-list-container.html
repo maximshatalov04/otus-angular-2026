@@ -1,5 +1,5 @@
 <ul>
-@for (todo of todos(); track todo.id; let i = $index;){
+@for (todo of todos(); track todo.id){
     <li><app-to-do-list-item 
         [item]="todo"
         (itemIdToDelete)="onItemDeleted($event)"/>

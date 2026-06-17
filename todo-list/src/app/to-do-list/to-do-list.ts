@@ -2,11 +2,7 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { ToDoListTitle } from '../to-do-list-title/to-do-list-title';
 import { ToDoListForm } from '../to-do-list-form/to-do-list-form';
 import { ToDoListContainer } from '../to-do-list-container/to-do-list-container';
-
-export interface ToDoItem {
-  id: number;
-  text: string;
-}
+import { ToDoItem } from '../interfaces/ToDoItem';
 
 @Component({
   selector: 'app-to-do-list',

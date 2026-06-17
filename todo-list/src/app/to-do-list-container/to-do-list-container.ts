@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { ToDoListItem } from '../to-do-list-item/to-do-list-item';
-import { ToDoItem } from '../to-do-list/to-do-list';
+import { ToDoItem } from '../interfaces/ToDoItem';
 
 @Component({
   selector: 'app-to-do-list-container',

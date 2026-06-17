@@ -11,34 +11,4 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-    ::ng-deep .button {
-        cursor: pointer;
-        margin-left: 0.5rem;
-        background-color: #b694eb;
-        color: white;
-        border-width: 0;
-        border-radius: 2px;
-        padding: 0.5rem;
-    }
-
-    ::ng-deep button[disabled] {
-        opacity: 0.5;
-    }
-
-    ::ng-deep .button--add {
-        background-color: #45c86a;
-        min-width: 6rem;
-        :hover{
-            background-color: #3aa658;
-        }
-    }
-    ::ng-deep .button--delete {
-        padding-bottom: 0.2rem;
-        padding-top: 0.2rem;
-        background-color: #c73131;
-        :hover{
-            background-color: #9b2626;
-        }
-    }
 }

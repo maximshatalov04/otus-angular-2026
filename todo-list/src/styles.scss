@@ -5,6 +5,48 @@
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 
+.button {
+  cursor: pointer;
+  margin-left: 0.5rem;
+  background-color: #b694eb;
+  color: white;
+  border-width: 0;
+  border-radius: 2px;
+  padding: 0.5rem;
+
+  transition: background-color 0.3s ease, 
+}
+
+button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button--add {
+  background-color: #45c86a;
+  min-width: 6rem;
+
+  &:hover {
+    background-color: #3aa658;
+    &:disabled{
+      background-color: #45c86a;
+    }
+  }
+}
+
+.button--delete {
+  padding-bottom: 0.2rem;
+  padding-top: 0.2rem;
+  background-color: #c73131;
+
+  &:hover {
+    background-color: #9b2626;
+        &:disabled{
+      background-color: #c73131;
+    }
+  }
+}
+
 html {
   height: 100%;
   @include mat.theme(

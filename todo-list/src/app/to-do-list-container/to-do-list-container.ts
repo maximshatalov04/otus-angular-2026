@@ -15,7 +15,6 @@ export class ToDoListContainer {
   readonly itemIdToDelete = output<number>();
 
   onItemDeleted(id: number) {
-    console.log("item deleted: ", id)
     this.itemIdToDelete.emit(id);
   }
 }

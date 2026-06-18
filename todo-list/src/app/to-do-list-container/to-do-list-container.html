@@ -1,3 +1,8 @@
-<app-to-do-list-item/>
-<app-to-do-list-item/>
-<app-to-do-list-item/>
+<ul>
+@for (todo of todos(); track todo.id){
+    <li><app-to-do-list-item 
+        [item]="todo"
+        (itemIdToDelete)="itemDeleted($event)"/>
+    </li>
+    }
+</ul>

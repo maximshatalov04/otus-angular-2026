@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-to-do-list-title',
-  imports: [],
   templateUrl: './to-do-list-title.html',
   styleUrl: './to-do-list-title.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToDoListTitle {}

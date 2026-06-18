@@ -1,2 +1,2 @@
-<p class="list-item-task">{{task}}</p>
-<button class="list-item-button">Delete</button>
+<span class="list-item-task">{{ item()?.text }}</span>
+<button (click)="onItemDeleted(item()?.id)" class="button button--delete">Delete</button>

@@ -14,7 +14,7 @@ export class ToDoListContainer {
   readonly todos = input.required<ToDoItem[] | undefined>();
   readonly itemIdToDelete = output<number>();
 
-  onItemDeleted(id: number) {
+  itemDeleted(id: number) {
     this.itemIdToDelete.emit(id);
   }
 }

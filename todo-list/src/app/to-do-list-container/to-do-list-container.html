@@ -2,7 +2,7 @@
 @for (todo of todos(); track todo.id){
     <li><app-to-do-list-item 
         [item]="todo"
-        (itemIdToDelete)="onItemDeleted($event)"/>
+        (itemIdToDelete)="itemDeleted($event)"/>
     </li>
     }
 </ul>

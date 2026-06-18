@@ -3,7 +3,6 @@ import { ToDoItem } from '../interfaces/ToDoItem';
 
 @Component({
   selector: 'app-to-do-list-item',
-  imports: [],
   templateUrl: './to-do-list-item.html',
   styleUrl: './to-do-list-item.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -13,7 +12,7 @@ export class ToDoListItem {
   readonly itemIdToDelete = output<number>();
 
   onItemDeleted(id:number | undefined) {
-    if (id)
+    if (id != null)
       this.itemIdToDelete.emit(id)
   }
 }

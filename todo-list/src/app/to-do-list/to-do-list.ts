@@ -21,22 +21,21 @@ export class ToDoList {
   ]);
 
   onItemDeleted(itemId: number) {
-     this.todos.update(currentItems => 
-        currentItems.filter(item => item.id !== itemId)
-      );
+    this.todos.update(currentItems =>
+      currentItems.filter(item => item.id !== itemId)
+    );
   };
 
   onTaskToAdd(task: string) {
-     console.log("Trying to add: ", task);
-        const currentList = this.todos();
-        const maxId = currentList.length === 0 
-          ? 0 
-          : currentList.reduce((max, item) => (item.id > max ? item.id : max), 0);
-    
-        const newItem = { id: maxId + 1, text: task.trim()};
-        this.todos.update(list => [
-          ...list,
-          newItem
-        ]);
+    const currentList = this.todos();
+    const maxId = currentList.length === 0
+      ? 0
+      : currentList.reduce((max, item) => (item.id > max ? item.id : max), 0);
+
+    const newItem = { id: maxId + 1, text: task.trim() };
+    this.todos.update(list => [
+      ...list,
+      newItem
+    ]);
   }
 }

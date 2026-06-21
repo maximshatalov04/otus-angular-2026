@@ -8,7 +8,11 @@
         placeholder="Add your new ToDo">
 </mat-form-field>
 
-<button class="button button--add" 
-    [disabled] = isDisabled()
-    (click)="onItemAdded()">Add task
-</button>
+<app-templated-button class="button button--add" 
+    [isDisabled]="isInputEmpty()"
+    (click)="onItemAdded()"
+    [bgColor]="'#45c86a'">
+        <span class="add-icon">
+        <mat-icon>add</mat-icon>
+    </span>
+</app-templated-button>

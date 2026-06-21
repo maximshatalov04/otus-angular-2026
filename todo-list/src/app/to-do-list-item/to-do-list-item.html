@@ -1,2 +1,11 @@
 <span class="list-item-task">{{ item()?.text }}</span>
-<button (click)="onItemDeleted(item()?.id)" class="button button--delete">Delete</button>
+<app-templated-button 
+    (click)="onItemDeleted(item()?.id)" 
+    class="button button--delete"
+    [bgColor]="'#c73131'"
+    >
+    <span class="delete-icon">
+        <mat-icon>delete</mat-icon>
+    </span>
+</app-templated-button>
+

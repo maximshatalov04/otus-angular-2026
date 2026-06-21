@@ -1,12 +1,32 @@
-:host{
-    width:100%;
-    flex: 0 1 auto; 
+:host {
+    width: 100%;
+    flex: 0 1 auto;
 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    ul {
+
+    .to-do-list-container {
         padding: 0;
         list-style-type: none;
+        
+        opacity: 1;
+        transform: scale(1);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+
+        &[hidden] {
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
+        }
+    }
+
+    .loader {
+        margin: 3rem auto;
+        opacity: 0.5;
+
+        ::ng-deep circle {
+            stroke-width: 2px !important;
+        }
     }
 }

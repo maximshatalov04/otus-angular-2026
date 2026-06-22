@@ -2,6 +2,7 @@
   type="button"
   [style.--btn-bg]="bgColor()" 
   [disabled]="isDisabled()"
+  (click)="onButtonClicked()"
   >
     <ng-content></ng-content>
 </button>

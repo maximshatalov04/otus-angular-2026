@@ -1,11 +1,10 @@
   @if (isLoading()) {
     <mat-spinner 
         [diameter]="100"
-        
         mode="indeterminate"
         class="loader"></mat-spinner>
   } @else {
-    <ul [hidden] class="to-do-list-container">
+    <ul class="to-do-list-container">
         @for (todo of todos(); track todo.id){
             <li><app-to-do-list-item 
                 [item]="todo"

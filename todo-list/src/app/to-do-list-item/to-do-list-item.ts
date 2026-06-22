@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { ToDoItem } from '../interfaces/ToDoItem';
+import { ToDoItem } from '../interfaces/to-do-item';
 import { MatIconModule } from '@angular/material/icon';
 import { TemplatedButton } from "../ui/templated-button/templated-button";
 

@@ -14,7 +14,7 @@ import { MatIconModule } from "@angular/material/icon";
 })
 export class ToDoListForm {
   readonly taskToAdd = output<string>();
-  newTaskText = signal<string>('');
+  readonly newTaskText = signal<string>('');
   readonly isInputEmpty = computed(()=> 
     this.isEmpty(this.newTaskText())
   );

@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, input, output, signal, OnInit} from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output, signal, OnInit, OnDestroy} from '@angular/core';
 import { ToDoListItem } from '../to-do-list-item/to-do-list-item';
-import { ToDoItem } from '../interfaces/ToDoItem';
+import { ToDoItem } from '../interfaces/to-do-item';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
@@ -10,7 +10,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
   styleUrl: './to-do-list-container.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ToDoListContainer implements OnInit{
+export class ToDoListContainer implements OnInit, OnDestroy{
   readonly todos = input.required<ToDoItem[] | undefined>();
   readonly itemIdToDelete = output<number>();
   readonly isLoading = signal<boolean>(true);

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-templated-button',
@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, input, Output } from 
 export class TemplatedButton {
   readonly isDisabled = input<boolean>(false);
   readonly bgColor = input<string>('#000000');
-  @Output() clicked = new EventEmitter<void>();
+  readonly clicked = output<void>();
 
   onButtonClicked(): void {
     this.clicked.emit();

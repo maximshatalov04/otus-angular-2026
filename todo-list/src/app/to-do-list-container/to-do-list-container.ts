@@ -8,7 +8,7 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
   imports: [ToDoListItem, MatProgressSpinner],
   templateUrl: './to-do-list-container.html',
   styleUrl: './to-do-list-container.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToDoListContainer implements OnInit, OnDestroy{
   readonly todos = input.required<ToDoItem[] | undefined>();

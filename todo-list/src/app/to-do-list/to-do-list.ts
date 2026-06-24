@@ -9,7 +9,7 @@ import { ToDoItem } from '../interfaces/to-do-item';
   imports: [ToDoListTitle, ToDoListContainer, ToDoListForm],
   templateUrl: './to-do-list.html',
   styleUrl: './to-do-list.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class ToDoList {
@@ -22,7 +22,7 @@ export class ToDoList {
 
   onItemDeleted(itemId: number) {
     this.todos.update(currentItems =>
-      currentItems.filter(item => item.id !== itemId)
+      currentItems.filter(item => item.id !== itemId),
     );
   };
 
@@ -35,7 +35,7 @@ export class ToDoList {
     const newItem = { id: maxId + 1, text: task.trim() };
     this.todos.update(list => [
       ...list,
-      newItem
+      newItem,
     ]);
   }
 }

@@ -10,13 +10,13 @@ import { MatIconModule } from "@angular/material/icon";
   imports: [FormsModule, MatFormFieldModule, MatInputModule, TemplatedButton, MatIconModule],
   templateUrl: './to-do-list-form.html',
   styleUrl: './to-do-list-form.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToDoListForm {
   readonly taskToAdd = output<string>();
   readonly newTaskText = signal<string>('');
   readonly isInputEmpty = computed(()=> 
-    this.isEmpty(this.newTaskText())
+    this.isEmpty(this.newTaskText()),
   );
 
   onItemAdded() {

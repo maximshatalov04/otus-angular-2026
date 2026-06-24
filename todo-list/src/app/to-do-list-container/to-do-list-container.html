@@ -1,8 +1,16 @@
-<ul>
-@for (todo of todos(); track todo.id){
-    <li><app-to-do-list-item 
-        [item]="todo"
-        (itemIdToDelete)="itemDeleted($event)"/>
-    </li>
-    }
-</ul>
+  @if (isLoading()) {
+    <mat-spinner 
+        [diameter]="100"
+        mode="indeterminate"
+        class="loader"></mat-spinner>
+  } @else {
+    <ul class="to-do-list-container">
+        @for (todo of todos(); track todo.id){
+            <li><app-to-do-list-item 
+                [item]="todo"
+                (itemIdToDelete)="itemDeleted($event)"/>
+            </li>
+            }
+    </ul>
+  }
+

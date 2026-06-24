@@ -1,24 +1,17 @@
-:host{
-    border-radius: 2px;
+:host {
     margin-top: 1rem;
 
     display: flex;
-    justify-content: space-between;
 
     ::ng-deep .mat-mdc-form-field-subscript-wrapper {
-            width: 0;
-        }
+        width: 0;
+    }
 
     .form-field {
         width: 100%;
         flex-direction: row;
 
-        .form-input {
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-
-        ::ng-deep .form-input::placeholder{
+        ::ng-deep .form-input::placeholder {
             opacity: 0.5;
         }
     }

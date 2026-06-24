@@ -1,0 +1,36 @@
+:host {
+    margin-left: 0.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    border-width: 0;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: var(--btn-bg, #555555);
+    border-width: 0;
+    color: white;
+    width: 100%;
+    height: 100%;
+
+    &:hover {
+        // Автоматически затемняем базовый цвет на 20%
+        background-color: color-mix(in srgb, var(--btn-bg), black 20%);
+        transform: scale(1.05);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+
+    &[disabled]{
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: scale(1);
+        background-color: var(--btn-bg, #555555);
+        box-shadow:none;
+    }
+}
+

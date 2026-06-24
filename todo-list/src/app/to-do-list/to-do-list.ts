@@ -2,14 +2,14 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { ToDoListTitle } from '../to-do-list-title/to-do-list-title';
 import { ToDoListForm } from '../to-do-list-form/to-do-list-form';
 import { ToDoListContainer } from '../to-do-list-container/to-do-list-container';
-import { ToDoItem } from '../interfaces/ToDoItem';
+import { ToDoItem } from '../interfaces/to-do-item';
 
 @Component({
   selector: 'app-to-do-list',
   imports: [ToDoListTitle, ToDoListContainer, ToDoListForm],
   templateUrl: './to-do-list.html',
   styleUrl: './to-do-list.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class ToDoList {
@@ -22,7 +22,7 @@ export class ToDoList {
 
   onItemDeleted(itemId: number) {
     this.todos.update(currentItems =>
-      currentItems.filter(item => item.id !== itemId)
+      currentItems.filter(item => item.id !== itemId),
     );
   };
 
@@ -35,7 +35,7 @@ export class ToDoList {
     const newItem = { id: maxId + 1, text: task.trim() };
     this.todos.update(list => [
       ...list,
-      newItem
+      newItem,
     ]);
   }
 }

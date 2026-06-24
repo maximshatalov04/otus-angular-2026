@@ -2,19 +2,21 @@ import { ChangeDetectionStrategy, Component, computed, output, signal } from '@a
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { TemplatedButton } from "../ui/templated-button/templated-button";
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
   selector: 'app-to-do-list-form',
-  imports: [ FormsModule, MatFormFieldModule, MatInputModule ],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, TemplatedButton, MatIconModule],
   templateUrl: './to-do-list-form.html',
   styleUrl: './to-do-list-form.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToDoListForm {
   readonly taskToAdd = output<string>();
-  newTaskText = signal<string>('');
-  readonly isDisabled = computed(()=> 
-    this.isEmpty(this.newTaskText())
+  readonly newTaskText = signal<string>('');
+  readonly isInputEmpty = computed(()=> 
+    this.isEmpty(this.newTaskText()),
   );
 
   onItemAdded() {

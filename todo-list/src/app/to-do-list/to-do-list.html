@@ -1,7 +1,9 @@
 <app-to-do-list-title/>
 <app-to-do-list-container 
    [todos]="todos()"
-   (itemIdToDelete)="onItemDeleted($event)" />
+   [itemIdToSelect]="selectedItemId()"
+   (itemIdToDelete)="onItemDeleted($event)"
+ />
 <app-to-do-list-form
    (taskToAdd)="onTaskToAdd($event)"
    />

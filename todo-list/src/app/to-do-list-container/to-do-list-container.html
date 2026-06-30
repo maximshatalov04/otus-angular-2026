@@ -4,13 +4,15 @@
         mode="indeterminate"
         class="loader"></mat-spinner>
   } @else {
-    <ul class="to-do-list-container">
-        @for (todo of todos(); track todo.id){
-            <li><app-to-do-list-item 
-                [item]="todo"
-                (itemIdToDelete)="itemDeleted($event)"/>
-            </li>
-            }
-    </ul>
+      <ul class="to-do-list-container">
+          @for (todo of todos(); track todo.id){
+              <li><app-to-do-list-item 
+                  [item]="todo"
+                  (itemIdToDelete)="itemDeleted($event)"
+                  (itemIdToSelect)="itemSelected($event)"/>
+              </li>
+              }
+      </ul>
+      <p class="selected-item-description">{{selectedItem()?.description}}</p>
   }
 

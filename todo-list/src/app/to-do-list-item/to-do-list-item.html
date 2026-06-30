@@ -1,4 +1,6 @@
-<span class="list-item-task">{{ item()?.text }}</span>
+<div class="list-item-task" (click)="onItemSelected(item()?.id)">
+    <span >{{ item()?.text }}</span>
+</div>
 <app-templated-button 
     class="button button--delete"
     [bgColor]="'#c73131'"

@@ -10,19 +10,20 @@ import { Directive, ElementRef, inject, input, Renderer2 } from '@angular/core';
   }
 })
 export class TooltipDirective {
-  readonly appTooltip = input<string>("");
+  readonly appTooltip = input<string | undefined>("");
   
   private readonly el = inject(ElementRef);
   private readonly renderer = inject(Renderer2);
   private tooltipElement: HTMLElement | null = null;
 
   show(): void{
-    if (!this.appTooltip()) return;
+    const tooltipText = this.appTooltip(); 
+    if (!tooltipText) return;
 
     this.tooltipElement = this.renderer.createElement('div');
     this.renderer.addClass(this.tooltipElement, 'app-tooltip');
 
-    const textNode = this.renderer.createText(this.appTooltip());
+    const textNode = this.renderer.createText(tooltipText);
     this.renderer.appendChild(this.tooltipElement, textNode);
 
     this.renderer.appendChild(document.body, this.tooltipElement);

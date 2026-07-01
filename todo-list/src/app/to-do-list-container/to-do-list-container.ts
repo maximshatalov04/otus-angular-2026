@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, input, output, signal, OnInit, OnDe
 import { ToDoListItem } from '../to-do-list-item/to-do-list-item';
 import { ToDoItem } from '../interfaces/to-do-item';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { TooltipDirective } from '../directives/tooltip';
 
 @Component({
   selector: 'app-to-do-list-container',
-  imports: [ToDoListItem, MatProgressSpinner],
+  imports: [ToDoListItem, MatProgressSpinner, TooltipDirective],
   templateUrl: './to-do-list-container.html',
   styleUrl: './to-do-list-container.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

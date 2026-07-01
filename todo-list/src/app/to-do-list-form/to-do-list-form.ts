@@ -5,10 +5,11 @@ import { MatInputModule } from '@angular/material/input';
 import { TemplatedButton } from "../ui/templated-button/templated-button";
 import { MatIconModule } from "@angular/material/icon";
 import { ToDoItem } from '../interfaces/to-do-item';
+import { TooltipDirective } from '../directives/tooltip';
 
 @Component({
   selector: 'app-to-do-list-form',
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, TemplatedButton, MatIconModule],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, TemplatedButton, MatIconModule, TooltipDirective],
   templateUrl: './to-do-list-form.html',
   styleUrl: './to-do-list-form.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

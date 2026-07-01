@@ -6,7 +6,8 @@
   } @else {
       <ul class="to-do-list-container">
           @for (todo of todos(); track todo.id){
-              <li><app-to-do-list-item 
+              <li><app-to-do-list-item
+                  [appTooltip]="todo.description" 
                   [item]="todo"
                   [class.selected]="selectedItem()?.id === todo.id"
                   (deletedItemId)="itemDeleted($event)"

@@ -13,12 +13,12 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 export class ToDoListContainer implements OnInit, OnDestroy {
 
   readonly todos = input.required<ToDoItem[] | undefined>();
-  readonly itemIdToSelect = input<number>();
-  readonly itemIdToDelete = output<number>();
+  readonly selectedItemId = input<number>();
+  readonly deletedItemId = output<number>();
   readonly isLoading = signal<boolean>(true);
   readonly selectedItem = signal<ToDoItem | undefined>(undefined);
   readonly selectedItemChanged = effect(() => {
-    const id = this.itemIdToSelect();
+    const id = this.selectedItemId();
     
     if (id != null) {
       this.selectItem(id);
@@ -27,7 +27,7 @@ export class ToDoListContainer implements OnInit, OnDestroy {
   private timerId: number | null = null;
 
   itemDeleted(id: number) {
-    this.itemIdToDelete.emit(id);
+    this.deletedItemId.emit(id);
   }
 
   itemSelected(id: number) {

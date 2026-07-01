@@ -8,8 +8,9 @@
           @for (todo of todos(); track todo.id){
               <li><app-to-do-list-item 
                   [item]="todo"
-                  (itemIdToDelete)="itemDeleted($event)"
-                  (itemIdToSelect)="itemSelected($event)"/>
+                  [class.selected]="selectedItem()?.id === todo.id"
+                  (deletedItemId)="itemDeleted($event)"
+                  (selectedItemId)="itemSelected($event)"/>
               </li>
               }
       </ul>

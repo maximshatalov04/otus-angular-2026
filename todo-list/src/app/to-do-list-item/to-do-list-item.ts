@@ -12,18 +12,18 @@ import { TemplatedButton } from "../ui/templated-button/templated-button";
 })
 export class ToDoListItem {
   readonly item = input.required<ToDoItem | undefined>();
-  readonly itemIdToDelete = output<number>();
-  readonly itemIdToSelect = output<number>();
+  readonly deletedItemId = output<number>();
+  readonly selectedItemId = output<number>();
 
   onItemDeleted(id: number | undefined) {
     if (id != null) {
-      this.itemIdToDelete.emit(id)
+      this.deletedItemId.emit(id)
     }
   }
 
   onItemSelected(id: number | undefined) {
     if (id != null) {
-      this.itemIdToSelect.emit(id)
+      this.selectedItemId.emit(id)
     }
   }
 }

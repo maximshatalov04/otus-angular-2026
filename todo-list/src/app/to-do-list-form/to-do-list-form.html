@@ -10,6 +10,7 @@
     </mat-form-field>
 
     <app-templated-button class="button button--add" 
+        appTooltip="Add task"
         [isDisabled]="isInputEmpty()"
         (clicked)="onItemAdded()"
         [bgColor]="'#45c86a'">

@@ -25,6 +25,8 @@ export class ToDoList {
     this.todos.update(currentItems =>
       currentItems.filter(item => item.id !== itemId),
     );
+
+    this.selectedItemId.set(0);
   };
 
   onTaskToAdd(itemToAdd: ToDoItem) {

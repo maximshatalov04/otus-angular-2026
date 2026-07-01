@@ -1,4 +1,5 @@
 :host {
+    max-width: 30vw;
     background-color: #f8f8f8;
     border-radius: 2px;
     margin-top: 1rem;
@@ -8,10 +9,18 @@
     justify-content: space-between;
     align-items: center;
 
-    span{
-        white-space: nowrap;
+    .list-item-task {
+        width: 100%;
+        padding: 0;
+        height: 2rem;
         overflow: hidden;
-        text-overflow: ellipsis;
-        width: 90%;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        span {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
     }
 }

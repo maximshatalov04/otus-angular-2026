@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -6,6 +6,7 @@ import { TemplatedButton } from "../ui/templated-button/templated-button";
 import { MatIconModule } from "@angular/material/icon";
 import { ToDoItem } from '../interfaces/to-do-item';
 import { TooltipDirective } from '../directives/tooltip';
+import { ToDoService } from '../services/to-do-service';
 
 @Component({
   selector: 'app-to-do-list-form',
@@ -15,6 +16,7 @@ import { TooltipDirective } from '../directives/tooltip';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToDoListForm {
+  readonly state = inject(ToDoService);
   readonly taskToAdd = output<ToDoItem>();
   readonly newTaskText = signal<string>('');
   readonly newTaskDescription = signal<string>('');
@@ -29,7 +31,9 @@ export class ToDoListForm {
       return;
     }
 
-    this.taskToAdd.emit({ id: 0, text: text, description: description });
+    const newItemId = this.state.add({ text: text, description: description });
+    this.state.select(newItemId);
+
     this.newTaskText.set('');
     this.newTaskDescription.set('');
   }

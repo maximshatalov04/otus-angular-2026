@@ -9,12 +9,6 @@
         opacity: 1;
         transform: scale(1);
         transition: opacity 0.3s ease, transform 0.3s ease;
-
-        &[hidden] {
-            opacity: 0;
-            transform: scale(0.95);
-            pointer-events: none;
-        }
     }
 
     .selected-item-description {

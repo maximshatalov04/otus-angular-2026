@@ -1,20 +1,25 @@
-import { Directive, ElementRef, inject, input, Renderer2 } from '@angular/core';
+import { DestroyRef, Directive, ElementRef, inject, input, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appTooltip]',
   host:{
     '(mouseenter)': 'show()',
     '(mouseleave)': 'hide()',
-    '(focus)': 'show()',
-    '(blur)': 'hide()',
-  }
+  },
 })
 export class TooltipDirective {
   readonly appTooltip = input<string | undefined>("");
   
   private readonly el = inject(ElementRef);
   private readonly renderer = inject(Renderer2);
+  private destroyRef = inject(DestroyRef); 
   private tooltipElement: HTMLElement | null = null;
+
+  constructor(){
+    this.destroyRef.onDestroy(() => {
+      this.hide();
+    });
+  }
 
   show(): void{
     const tooltipText = this.appTooltip(); 

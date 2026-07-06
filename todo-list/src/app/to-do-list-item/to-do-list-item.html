@@ -1,6 +1,9 @@
-<div class="list-item-task" (click)="onItemSelected(item()?.id)">
+<button 
+    [appTooltip]="item()?.description" 
+    class="list-item-task"
+    (click)="onItemSelected(item()?.id)">
     <span >{{ item()?.text }}</span>
-</div>
+</button>
 <app-templated-button 
     appTooltip="Delete task"
     class="button button--delete"

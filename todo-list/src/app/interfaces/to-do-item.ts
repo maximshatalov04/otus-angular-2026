@@ -2,5 +2,5 @@
 export interface ToDoItem {
   id: number;
   text: string;
-  description: string | undefined;
+  description?: string;
 }

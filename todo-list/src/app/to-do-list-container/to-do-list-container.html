@@ -1,20 +1,17 @@
-  @if (isLoading()) {
+  @if (state.loading()) {
     <mat-spinner 
         [diameter]="100"
         mode="indeterminate"
         class="loader"></mat-spinner>
   } @else {
       <ul class="to-do-list-container">
-          @for (todo of todos(); track todo.id){
+          @for (todo of state.todos(); track todo.id){
               <li><app-to-do-list-item
-                  [appTooltip]="todo.description" 
                   [item]="todo"
-                  [class.selected]="selectedItem()?.id === todo.id"
-                  (deletedItemId)="itemDeleted($event)"
-                  (selectedItemId)="itemSelected($event)"/>
+                  [class.selected]="state.selectedItem()?.id === todo.id"/>
               </li>
               }
       </ul>
-      <p class="selected-item-description">{{selectedItem()?.description}}</p>
+      <p class="selected-item-description">{{state.selectedItem()?.description}}</p>
   }
 

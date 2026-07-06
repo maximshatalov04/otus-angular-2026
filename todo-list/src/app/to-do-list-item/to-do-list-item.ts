@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
 import { ToDoItem } from '../interfaces/to-do-item';
 import { MatIconModule } from '@angular/material/icon';
 import { TemplatedButton } from "../ui/templated-button/templated-button";
 import { TooltipDirective } from '../directives/tooltip';
+import { ToDoService } from '../services/to-do-service';
 
 @Component({
   selector: 'app-to-do-list-item',
@@ -12,19 +13,21 @@ import { TooltipDirective } from '../directives/tooltip';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToDoListItem {
+  readonly state = inject(ToDoService)
+
   readonly item = input.required<ToDoItem | undefined>();
   readonly deletedItemId = output<number>();
   readonly selectedItemId = output<number>();
 
   onItemDeleted(id: number | undefined) {
     if (id != null) {
-      this.deletedItemId.emit(id)
+      this.state.delete(id);
     }
   }
 
   onItemSelected(id: number | undefined) {
     if (id != null) {
-      this.selectedItemId.emit(id)
+      this.state.select(id);
     }
   }
 }

@@ -7,10 +7,10 @@
 <app-templated-button 
     appTooltip="Delete task"
     class="button button--delete"
-    bgColor="#f44336"
+    bgColor="transparent"
     (clicked)="onItemDeleted(item()?.id)" 
     >
     <span class="delete-icon">
-        <mat-icon>delete</mat-icon>
+        <mat-icon style="color:#f44336;">highlight_off</mat-icon>
     </span>
 </app-templated-button>

@@ -1,14 +1,10 @@
 :host {
-    width: 360px;
     min-height: 40vh;
     background: white;
     border-radius: 1rem;
-    /* радиус скругления углов */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    /* тень */
     padding: 1.5rem;
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }

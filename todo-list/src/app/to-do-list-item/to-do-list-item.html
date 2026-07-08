@@ -1,7 +1,13 @@
-<span class="list-item-task">{{ item()?.text }}</span>
+<button 
+    [appTooltip]="item()?.description" 
+    class="list-item-task"
+    (click)="onItemSelected(item()?.id)">
+    <span >{{ item()?.text }}</span>
+</button>
 <app-templated-button 
+    appTooltip="Delete task"
     class="button button--delete"
-    [bgColor]="'#c73131'"
+    bgColor="#da4b4b"
     (clicked)="onItemDeleted(item()?.id)" 
     >
     <span class="delete-icon">

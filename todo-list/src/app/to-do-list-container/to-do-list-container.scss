@@ -1,24 +1,22 @@
 :host {
-    width: 100%;
-    flex: 0 1 auto;
-
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-
+    
     .to-do-list-container {
+        flex: 1;
         padding: 0;
+        margin: 0;
         list-style-type: none;
-        
         opacity: 1;
         transform: scale(1);
         transition: opacity 0.3s ease, transform 0.3s ease;
+    }
 
-        &[hidden] {
-            opacity: 0;
-            transform: scale(0.95);
-            pointer-events: none;
-        }
+    .selected-item-description {
+        width: 20rem;
+        margin: 1rem 1rem 0;
+        padding: 0.5rem;
+        background-color: #f8f8f8;
+        overflow: hidden;
     }
 
     .loader {
@@ -28,5 +26,9 @@
         ::ng-deep circle {
             stroke-width: 2px !important;
         }
+    }
+
+    .selected{
+        background-color: #a5ffff;
     }
 }

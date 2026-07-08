@@ -1,18 +1,31 @@
-<mat-form-field appearance="outline" class="form-field">
-    <input 
+<div class="form-row">
+    <mat-form-field appearance="outline" class="form-field">
+        <input 
+            class="form-input" 
+            matInput 
+            type = "text" 
+            [ngModel]="newTaskText()" 
+            (ngModelChange)="newTaskText.set($event)"
+            placeholder="Add your new ToDo">
+    </mat-form-field>
+
+    <app-templated-button class="button button--add" 
+        appTooltip="Add task"
+        [isDisabled]="isInputEmpty()"
+        (clicked)="onItemAdded()"
+        bgColor="#006a6a">
+            <span class="add-icon">
+            <mat-icon>add</mat-icon>
+        </span>
+    </app-templated-button>
+</div>
+
+<mat-form-field appearance="outline" class="form-row form-text-area">
+    <textarea 
         class="form-input" 
         matInput 
         type = "text" 
-        [ngModel]="newTaskText()" 
-        (ngModelChange)="newTaskText.set($event)"
-        placeholder="Add your new ToDo">
+        [ngModel]="newTaskDescription()" 
+        (ngModelChange)="newTaskDescription.set($event)"
+        placeholder="Add your new ToDo description"></textarea>
 </mat-form-field>
-
-<app-templated-button class="button button--add" 
-    [isDisabled]="isInputEmpty()"
-    (clicked)="onItemAdded()"
-    [bgColor]="'#45c86a'">
-        <span class="add-icon">
-        <mat-icon>add</mat-icon>
-    </span>
-</app-templated-button>

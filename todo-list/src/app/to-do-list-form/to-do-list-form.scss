@@ -1,18 +1,18 @@
 :host {
-    margin-top: 1rem;
-
     display: flex;
-
+    flex-direction: column;
     ::ng-deep .mat-mdc-form-field-subscript-wrapper {
         width: 0;
     }
-
-    .form-field {
-        width: 100%;
-        flex-direction: row;
-
+    .form-row {
+            margin-top: 1rem;
+            display: flex;
         ::ng-deep .form-input::placeholder {
             opacity: 0.5;
         }
+    }
+    .form-field {
+        width: 100%;
+        flex-direction: row;
     }
 }

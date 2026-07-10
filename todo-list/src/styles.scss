@@ -17,10 +17,17 @@
     justify-content: center;
 }
 
+.save-icon {
+    width: 1.6rem;
+    padding: 0.4rem 0;
+    display: flex;
+    justify-content: center;
+}
+
 .app-tooltip {
   position: absolute;
   padding: 8px 12px;
-  background-color: #006a6af2;
+  background-color: #008484f2;
   color: #fff;
   font-size: 14px;
   border-radius: 6px;

@@ -7,6 +7,7 @@ import { ToDoService } from '../services/to-do-service';
 import { MatFormField } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { ToastService } from '../services/toast-service';
 
 @Component({
   selector: 'app-to-do-list-item',
@@ -17,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class ToDoListItem {
   readonly state = inject(ToDoService)
+  readonly toastService = inject(ToastService);
   readonly item = input.required<ToDoItem>();
   readonly isInputEmpty = computed(()=> 
     this.isEmpty(this.localText()),
@@ -26,6 +28,7 @@ export class ToDoListItem {
   onItemDeleted(id: number | undefined) {
     if (id != null) {
       this.state.delete(id);
+      this.toastService.showToast("Task is deleted", "warning");
     }
   }
 
@@ -48,7 +51,8 @@ export class ToDoListItem {
     const updatedItem = {... this.item(), text: this.localText()};
    
     this.state.update(updatedItem)
-       this.state.setEditMode(undefined);
+    this.state.setEditMode(undefined);
+    this.toastService.showToast("Task is updated", "info");
   }
 
   isEmpty(text:string | undefined){

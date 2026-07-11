@@ -58,7 +58,7 @@ export class ToDoService {
     this.#state.update(state => ({
       ...state,
       selectedItemId: id,
-      editModeId: undefined
+      editModeId: undefined,
     }));
   }
 
@@ -69,7 +69,7 @@ export class ToDoService {
     this.#state.update(state => ({
       ...state,
       todos: state.todos.map(item =>
-        item.id === newItem.id ? { ...newItem } : item
+        item.id === newItem.id ? { ...newItem } : item,
       ),
     }));
   }

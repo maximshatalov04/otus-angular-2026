@@ -5,6 +5,11 @@
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 
+:root{
+  --primary-bg-color: #008484;
+  --primary-bg-color-opacity: #008484f2;
+}
+
 .delete-icon {
     padding: 0.3rem 0;
     display: flex;
@@ -27,7 +32,7 @@
 .app-tooltip {
   position: absolute;
   padding: 8px 12px;
-  background-color: #008484f2;
+  background-color:  var(--primary-bg-color-opacity);
   color: #fff;
   font-size: 14px;
   border-radius: 6px;

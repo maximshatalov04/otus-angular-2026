@@ -43,11 +43,10 @@ export class ToDoListItem {
     this.state.setEditMode(this.item().id);
   }
 
-  onTextChange(newText: string) {
-    this.localText.set(newText);
-  }
-
   onItemSaved() {
+    if(!this.item())
+      return;
+    
     const updatedItem = {... this.item(), text: this.localText()};
    
     this.state.update(updatedItem)

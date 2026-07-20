@@ -62,9 +62,13 @@ export class ToDoService {
     }));
   }
 
-  update(newItem: ToDoItem | undefined) {
-    if (!newItem)
-      return;
+  update(newItem: ToDoItem) {
+    const itemToChange = newItem;
+
+    if(itemToChange.description){
+      itemToChange.description = itemToChange.description.trim();
+    }
+    itemToChange.text = itemToChange.text.trim();
 
     this.#state.update(state => ({
       ...state,

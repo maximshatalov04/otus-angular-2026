@@ -14,7 +14,7 @@ export class ToastComponent {
   readonly toasts = this.toastService.toasts;
 
   toastTypeClass(type?: Toast['type']) {
-    if (!type) return 'toast.info';
+    if (!type) return 'toast-info';
     return `toast-${type}`;
   }
 

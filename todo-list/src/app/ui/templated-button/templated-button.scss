@@ -16,7 +16,7 @@ button {
 
     &:hover {
         // Автоматически затемняем базовый цвет на 20%
-        background-color: color-mix(in srgb, var(--btn-bg), black 20%);
+        background-color: var(--btn-hover, color-mix( in srgb, var(--btn-bg), black 20%));
         transform: scale(1.05);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 

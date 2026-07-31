@@ -4,4 +4,5 @@ export interface ToDoState {
   todos: ToDoItem[];
   loading: boolean;
   selectedItemId?: number; 
+  editModeId?: number; 
 }

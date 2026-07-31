@@ -20,6 +20,8 @@ export class ToDoService {
   readonly loading = computed(() => this.#state().loading);
   readonly selectedItem = computed(() =>
      this.todos()?.find(t => t.id === this.#state().selectedItemId));
+  readonly editModeId = computed(() =>
+    this.#state().editModeId);
   
   setLoaded() {
         this.#state.update(state => ({
@@ -56,6 +58,30 @@ export class ToDoService {
     this.#state.update(state => ({
       ...state,
       selectedItemId: id,
+      editModeId: undefined,
+    }));
+  }
+
+  update(newItem: ToDoItem) {
+    const itemToChange = newItem;
+
+    if(itemToChange.description){
+      itemToChange.description = itemToChange.description.trim();
+    }
+    itemToChange.text = itemToChange.text.trim();
+
+    this.#state.update(state => ({
+      ...state,
+      todos: state.todos.map(item =>
+        item.id === newItem.id ? { ...newItem } : item,
+      ),
+    }));
+  }
+
+  setEditMode(id: number | undefined) {
+    this.#state.update(state => ({
+      ...state,
+      editModeId: id,
     }));
   }
 }

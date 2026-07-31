@@ -6,6 +6,7 @@ import { TemplatedButton } from "../ui/templated-button/templated-button";
 import { MatIconModule } from "@angular/material/icon";
 import { TooltipDirective } from '../directives/tooltip';
 import { ToDoService } from '../services/to-do-service';
+import { ToastService } from '../services/toast-service';
 
 @Component({
   selector: 'app-to-do-list-form',
@@ -16,6 +17,7 @@ import { ToDoService } from '../services/to-do-service';
 })
 export class ToDoListForm {
   readonly state = inject(ToDoService);
+  readonly toastService = inject(ToastService);
   readonly newTaskText = signal<string>('');
   readonly newTaskDescription = signal<string>('');
   readonly isInputEmpty = computed(()=> 
@@ -34,6 +36,7 @@ export class ToDoListForm {
 
     this.newTaskText.set('');
     this.newTaskDescription.set('');
+    this.toastService.showToast("New task is added", "success");
   }
 
   isEmpty(text:string){

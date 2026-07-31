@@ -13,7 +13,9 @@
 
     .selected-item-description {
         width: 20rem;
-        margin: 1rem 1rem 0;
+        margin-left: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 0;
         padding: 0.5rem;
         background-color: #f8f8f8;
         overflow: hidden;
@@ -29,6 +31,7 @@
     }
 
     .selected{
-        background-color: #a5ffff;
+        background-color: var(--primary-bg-color);
+        color: #f8f8f8;
     }
 }

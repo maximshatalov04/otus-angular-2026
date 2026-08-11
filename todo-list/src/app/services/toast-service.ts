@@ -10,7 +10,7 @@ export class ToastService {
 
   public readonly toasts: Signal<Toast[]> = this._toasts.asReadonly();
 
-  showToast(message: string, type: Toast['type'] = 'info') {
+  show(message: string, type: Toast['type'] = 'info') {
     const id = this.idCounter++;
     const newToast: Toast = { id, message, type };
 

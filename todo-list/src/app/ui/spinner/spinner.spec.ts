@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ToDoListForm } from './to-do-list-form';
+import { Spinner } from './spinner';
 
-describe('ToDoListForm', () => {
-  let component: ToDoListForm;
-  let fixture: ComponentFixture<ToDoListForm>;
+describe('Spinner', () => {
+  let component: Spinner;
+  let fixture: ComponentFixture<Spinner>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ToDoListForm],
+      imports: [Spinner],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ToDoListForm);
+    fixture = TestBed.createComponent(Spinner);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

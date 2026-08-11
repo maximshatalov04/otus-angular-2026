@@ -1,8 +1,9 @@
-import { ToDoItem } from "./to-do-item";
+import { ToDoItem, ToDoItemStatus } from "./to-do-item";
 
 export interface ToDoState {
-  todos: ToDoItem[];
+  todos?: ToDoItem[];
   loading: boolean;
   selectedItemId?: number; 
   editModeId?: number; 
+  selectedStatus?: ToDoItemStatus; 
 }

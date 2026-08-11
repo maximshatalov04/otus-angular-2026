@@ -9,6 +9,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 export class TemplatedButton {
   readonly isDisabled = input<boolean>(false);
   readonly bgColor = input<string>('#000000');
+  readonly buttonType = input<string>('button');
   readonly hoverColor = input<string | undefined>(undefined);
   readonly clicked = output<void>();
 

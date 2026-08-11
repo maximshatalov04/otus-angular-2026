@@ -1,0 +1,38 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+            <input 
+                class="form-input" 
+                matInput 
+                type = "text" 
+                [formControl] = "form.controls.text"
+                placeholder="Add your new ToDo">
+            @if (form.controls.text.hasError('required') && form.controls.text.touched) {
+                <span class="error">Task title is required</span>
+            }
+            @else if (form.controls.text.hasError('minLength') && form.controls.text.touched) {
+                <span class="error">Min length is {{form.controls.text.errors?.['minlength']?.min}}</span>
+            }
+        </mat-form-field>
+
+        <app-templated-button class="button button--add" 
+            appTooltip="Add task"
+            buttonType="submit"
+            [isDisabled]="form.invalid || submitting()"
+            bgColor="var(--primary-bg-color)">
+                <span class="add-icon">
+                <mat-icon>add</mat-icon>
+            </span>
+        </app-templated-button>
+    </div>
+ 
+    <mat-form-field appearance="outline" class="form-row form-text-area">
+        <textarea 
+            class="form-input" 
+            matInput 
+            type = "text" 
+            [formControl] = "form.controls.description"
+            placeholder="Add your new ToDo description"></textarea>
+    </mat-form-field>
+</form>
+

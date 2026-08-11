@@ -1,0 +1,10 @@
+:host{
+    .loader {
+        margin: 3rem auto;
+        opacity: 0.5;
+
+        ::ng-deep circle {
+            stroke-width: 2px !important;
+        }
+    }
+}

@@ -31,7 +31,7 @@ module.exports = defineConfig([
           style: 'kebab-case',
         },
       ],
-      "comma-dangle": ["error", "always-multiline"]
+      "comma-dangle": ["error", "always-multiline"],
     },
   },
   {

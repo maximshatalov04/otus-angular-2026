@@ -16,7 +16,10 @@ import { ToDoItemStatus } from '../interfaces/to-do-item';
 export class ItemsFilter {
   readonly state = inject(ToDoService);
 
-  onFilterChange(value: ToDoItemStatus | undefined ) {
-    this.state.updateStatus(value)
+  onFilterChange(value: ToDoItemStatus) {
+    const selectedValue = value;
+    console.log('Selected filter:', selectedValue);
+    
+    this.state.updateStatus(selectedValue);
   }
 }

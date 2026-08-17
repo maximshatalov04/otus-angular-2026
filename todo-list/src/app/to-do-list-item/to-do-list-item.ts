@@ -7,7 +7,6 @@ import { ToDoService } from '../services/to-do-service';
 import { MatFormField } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { ToastService } from '../services/toast-service';
 import { MatCheckbox } from '@angular/material/checkbox';
 
 @Component({
@@ -20,7 +19,6 @@ import { MatCheckbox } from '@angular/material/checkbox';
 export class ToDoListItem {
 
   readonly state = inject(ToDoService);
-  readonly toastService = inject(ToastService);
   readonly item = input.required<ToDoItem>();
   readonly isCompleted = linkedSignal<boolean>(() => this.item().status === 'Completed');
   readonly isInputEmpty = computed(()=> 

@@ -6,7 +6,7 @@ export interface ToDoItem {
   status: ToDoItemStatus;
 }
 
-export type ToDoItemStatus = 'InProgress' | 'Completed';
+export type ToDoItemStatus = 'All' | 'InProgress' | 'Completed';
 
 export interface CreateToDoItemDto {
   text: string;

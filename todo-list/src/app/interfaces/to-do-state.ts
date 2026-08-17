@@ -5,5 +5,5 @@ export interface ToDoState {
   loading: boolean;
   selectedItemId?: number; 
   editModeId?: number; 
-  selectedStatus?: ToDoItemStatus; 
+  selectedStatus: ToDoItemStatus; 
 }

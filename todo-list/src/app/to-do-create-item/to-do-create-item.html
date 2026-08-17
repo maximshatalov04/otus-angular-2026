@@ -10,8 +10,8 @@
             @if (form.controls.text.hasError('required') && form.controls.text.touched) {
                 <span class="error">Task title is required</span>
             }
-            @else if (form.controls.text.hasError('minLength') && form.controls.text.touched) {
-                <span class="error">Min length is {{form.controls.text.errors?.['minlength']?.min}}</span>
+            @else if (form.controls.text.hasError('minlength') && form.controls.text.touched) {
+                <span class="error">Min length is {{form.controls.text.errors?.['minlength']?.requiredLength}}</span>
             }
         </mat-form-field>
 

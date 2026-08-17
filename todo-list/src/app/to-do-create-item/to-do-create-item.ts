@@ -33,11 +33,21 @@ export class ToDoCreateItem {
 
     const text = this.form.controls.text.value!;
     const description = this.form.controls.description.value;
-    const newItemId = this.state.add({ text: text, description: description, status: 'InProgress'});
 
-    this.state.select(newItemId);
-
-    this.form.reset();
-    this.submitting.set(false);
+    this.state.add({ text: text, description: description, status: 'InProgress'})
+       .subscribe({
+      next: (itemCreated) => {
+        this.toastService.show("New task is added", "success");
+        this.state.select(itemCreated.id);
+        this.state.load(); // обновляем список
+        this.submitting.set(false);
+        this.form.reset();
+      },
+      error: () => {
+        this.toastService.show("Can't add the task", "error");
+        this.submitting.set(false);
+      },
+    });;
   }
 }
+

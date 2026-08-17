@@ -3,6 +3,7 @@ import { ToDoState } from '../interfaces/to-do-state';
 import { CreateToDoItemDto, ToDoItem, ToDoItemStatus } from '../interfaces/to-do-item';
 import { ApiClient } from './api-client';
 import { ToastService } from './toast-service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,13 +15,14 @@ export class ToDoService {
   #state = signal<ToDoState>({
     todos: [],
     loading: true,
+    selectedStatus: 'All',
   });
 
   readonly todos = computed(() => {
     const todos = this.#state().todos;
     const selectedStatus = this.#state().selectedStatus;
 
-    if (!this.#state().selectedStatus)
+    if (this.#state().selectedStatus === 'All')
       return todos;
 
     return todos?.filter(todo => todo.status === selectedStatus);
@@ -56,26 +58,14 @@ export class ToDoService {
     });
   }
 
-  public add(todo: CreateToDoItemDto):number {
+  public add(todo: CreateToDoItemDto): Observable<ToDoItem> {
     const newItem: CreateToDoItemDto = {
       text: todo.text.trim(),
       description: todo.description?.trim(),
       status: 'InProgress' as ToDoItemStatus,
     };
-    let taskId = -1;
     
-    this.api.createTask(newItem).subscribe({
-      next: (itemCreated) => {
-        this.toastService.show("New task is added", "success");
-        taskId = itemCreated.id; 
-        this.load(); // обновляем список
-      },
-      error: () => {
-        this.toastService.show("Can't add the task", "error");
-      },
-    });
-
-    return taskId;
+    return this.api.createTask(newItem);
   }
 
   public delete(id: number) {
@@ -99,7 +89,7 @@ export class ToDoService {
   }
 
   public update(updatedItem: ToDoItem) {
-    const itemToChange = updatedItem;
+    const itemToChange = { ...updatedItem };
 
     if(itemToChange.description){
       itemToChange.description = itemToChange.description.trim();
@@ -117,7 +107,7 @@ export class ToDoService {
     });
   }
 
-  public updateStatus(status: ToDoItemStatus | undefined) {
+  public updateStatus(status: ToDoItemStatus) {
     this.#state.update(state => ({
       ...state,
       selectedStatus: status,

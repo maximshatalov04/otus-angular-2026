@@ -8,6 +8,7 @@ import { MatFormField } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
+import { finalize, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-to-do-list-item',
@@ -28,7 +29,13 @@ export class ToDoListItem {
 
   onItemDeleted(id: number | undefined) {
     if (id != null) {
-      this.state.delete(id);
+      this.state.delete(id).pipe(
+        switchMap(()=> this.state.load()),
+      )
+      .subscribe(todos => {
+        if(todos)
+          this.state.updateItems(todos);
+      });
     }
   }
 
@@ -49,19 +56,31 @@ export class ToDoListItem {
     
     const updatedItem = {... this.item(), text: this.localText()};
    
-    this.state.update(updatedItem)
-    this.state.setEditMode(undefined);
+    this.state.update(updatedItem).pipe(
+        switchMap(()=> this.state.load()),
+        finalize(()=>this.state.setEditMode(undefined)),
+      )
+      .subscribe(todos => {
+        if(todos)
+          this.state.updateItems(todos);
+      });
   }
 
   onStatusChanged() {
-    if(!this.item())
+    if (!this.item())
       return;
     
     const status:ToDoItemStatus = this.isCompleted() ? 'Completed' : 'InProgress';
     const updatedItem = {... this.item(), status };
    
-    this.state.update(updatedItem)
-    this.state.setEditMode(undefined);
+    this.state.update(updatedItem).pipe(
+        switchMap(()=> this.state.load()),
+        finalize(()=>this.state.setEditMode(undefined)),
+      )
+      .subscribe(todos => {
+        if(todos)
+          this.state.updateItems(todos);
+      });
   }
 
   isEmpty(text:string | undefined){

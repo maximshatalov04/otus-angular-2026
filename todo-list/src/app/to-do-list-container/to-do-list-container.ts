@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject} from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { ToDoListItem } from '../to-do-list-item/to-do-list-item';
 import { ToDoService } from '../services/to-do-service';
 import { Spinner } from '../ui/spinner/spinner';
@@ -10,10 +10,13 @@ import { Spinner } from '../ui/spinner/spinner';
   styleUrl: './to-do-list-container.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
+
 export class ToDoListContainer implements OnInit {
   readonly state = inject(ToDoService);
-
+  readonly destroyRef = inject(DestroyRef);
   ngOnInit(): void {
-      this.state.load();
-  }
+    this.state.load().subscribe(todos => 
+      this.state.updateItems(todos) // обновляем список
+    )
+  };
 }

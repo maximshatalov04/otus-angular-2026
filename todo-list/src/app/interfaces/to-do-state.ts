@@ -1,9 +1,12 @@
-import { ToDoItem, ToDoItemStatus } from "./to-do-item";
+import { StatusFilter, ToDoItem } from "./to-do-item";
+
+export type StateError = string | undefined;
 
 export interface ToDoState {
-  todos?: ToDoItem[];
+  todos: ToDoItem[];
   loading: boolean;
   selectedItemId?: number; 
   editModeId?: number; 
-  selectedStatus: ToDoItemStatus; 
+  filter: StatusFilter; 
+  error: StateError; 
 }

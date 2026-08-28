@@ -20,6 +20,6 @@ export class ItemsFilter {
     const selectedValue = value;
     console.log('Selected filter:', selectedValue);
     
-    this.state.updateStatus(selectedValue);
+    this.state.setFilter(selectedValue);
   }
 }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal, viewChild } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -7,7 +7,8 @@ import { MatIconModule } from "@angular/material/icon";
 import { TooltipDirective } from '../directives/tooltip';
 import { ToDoService } from '../services/to-do-service';
 import { ToastService } from '../services/toast-service';
-import { catchError, finalize, of, switchMap, tap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-to-do-create-item',
@@ -17,6 +18,7 @@ import { catchError, finalize, of, switchMap, tap } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToDoCreateItem {
+  readonly #destroyRef = inject(DestroyRef);
   readonly state = inject(ToDoService);
   readonly toastService = inject(ToastService);
   readonly submitting = signal(false);
@@ -27,7 +29,9 @@ export class ToDoCreateItem {
 
   private readonly formDirective = viewChild.required(FormGroupDirective);
   
-  onSubmit() {
+  onSubmit(event: Event) {
+    event.preventDefault();
+    
     if (this.form.invalid)
       return;
     
@@ -37,24 +41,13 @@ export class ToDoCreateItem {
     const description = this.form.controls.description.value;
 
     this.state.add({ text, description, status: 'InProgress' }).pipe(
-      tap(() => this.submitting.set(true)),
-      // После успешного создания сразу запрашиваем новый список
-      switchMap(itemCreated => {
+      takeUntilDestroyed(this.#destroyRef),
+      finalize(()=> this.submitting.set(false)))
+      // Черновик сбрасывается ТОЛЬКО на успехе. Ошибка не доходит до next
+      // (её погасил стор), поэтому при упавшем запросе текст остаётся в поле.
+      .subscribe(()=>{
         this.toastService.show('New task is added', 'success');
-        this.state.select(itemCreated.id);
-        return this.state.load(); 
-      })
-      ,
-      catchError(() => {
-        this.toastService.show("Can't add the task", "error");
-        return of(null); // of(null), чтобы поток не умирал
-      }),
-      finalize(() => this.submitting.set(false)))
-      .subscribe(todos => {
-        // Здесь уже есть обновлённый список todos
         this.formDirective().resetForm();
-        if(todos)
-          this.state.updateItems(todos);
       });
   }
 }

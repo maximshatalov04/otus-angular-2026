@@ -1,6 +1,6 @@
 import { HttpErrorResponse, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
 import { ToastService } from '../services/toast-service';
-import { inject, } from '@angular/core';
+import { inject } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
 
 export const HttpErrorInterceptor: HttpInterceptorFn = (
@@ -27,6 +27,6 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (
       toastService.show(message, 'error');
 
       return throwError(() => new Error(message));
-    })
+    }),
   );
 };

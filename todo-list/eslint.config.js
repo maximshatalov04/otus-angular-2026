@@ -3,6 +3,7 @@ const eslint = require('@eslint/js');
 const { defineConfig } = require('eslint/config');
 const tseslint = require('typescript-eslint');
 const angular = require('angular-eslint');
+const prettierConfig = require('eslint-config-prettier');
 
 module.exports = defineConfig([
   {
@@ -12,6 +13,7 @@ module.exports = defineConfig([
       tseslint.configs.recommended,
       tseslint.configs.stylistic,
       angular.configs.tsRecommended,
+      prettierConfig,
     ],
     processor: angular.processInlineTemplates,
     rules: {
@@ -31,7 +33,7 @@ module.exports = defineConfig([
           style: 'kebab-case',
         },
       ],
-      "comma-dangle": ["error", "always-multiline"]
+      "comma-dangle": ["error", "always-multiline"],
     },
   },
   {

@@ -1,0 +1,11 @@
+<mat-form-field appearance="outline" class="form-field">
+    <mat-label>Статус</mat-label>
+    <mat-select
+    [value]="state.selectedStatus()"
+    (valueChange)="onFilterChange($event)"
+    >
+    <mat-option value="All">All</mat-option>
+    <mat-option value="InProgress">In Progress</mat-option>
+    <mat-option value="Completed">Completed</mat-option>
+    </mat-select>
+</mat-form-field>

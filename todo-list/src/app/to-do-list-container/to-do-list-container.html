@@ -1,17 +1,21 @@
-  @if (state.loading()) {
-    <mat-spinner 
-        [diameter]="100"
-        mode="indeterminate"
-        class="loader"></mat-spinner>
-  } @else {
-      <ul class="to-do-list-container">
-          @for (todo of state.todos(); track todo.id){
-              <li><app-to-do-list-item
-                  [item]="todo"
-                  [class.selected]="state.selectedItem()?.id === todo.id"/>
-              </li>
-              }
-      </ul>
-      <p class="selected-item-description">{{state.selectedItem()?.description}}</p>
-  }
+<div class="to-do-list-wrapper">
+  <ul class="to-do-list">
+    @for (todo of state.visibleTodos(); track todo.id) {
+      <li>
+        <app-to-do-list-item
+          [item]="todo"
+          [class.selected]="state.selectedItem()?.id === todo.id" />
+      </li>
+    }
+  </ul>
 
+  <p class="selected-item-description">
+    {{state.selectedItem()?.description}}
+  </p>
+
+  @if (state.loading()) {
+    <div class="overlay-spinner">
+      <app-spinner class="loader" />
+    </div>
+  }
+</div>

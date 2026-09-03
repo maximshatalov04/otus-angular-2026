@@ -17,9 +17,14 @@
         </span>
     </app-templated-button>
 } @else {
+<mat-checkbox 
+    [(ngModel)]="isCompleted" 
+    class="form-checkbox" 
+    (change)="onStatusChanged()"/>
 <button 
     [appTooltip]="item().description" 
     class="list-item-task"
+    [class.completed]="isCompleted()"
     (click)="onItemSelected(item().id)"
     (dblclick)="onSetEditing()">
     <span >{{ item().text }}</span>

@@ -1,10 +1,14 @@
 :host {
-    display: flex;
-    
-    .to-do-list-container {
+    .to-do-list-wrapper{
+        display: flex;
+        position: relative;
+        min-height: 25rem;
+    }
+    .to-do-list {
         flex: 1;
         padding: 0;
         margin: 0;
+        margin-right: auto;
         list-style-type: none;
         opacity: 1;
         transform: scale(1);
@@ -12,26 +16,30 @@
     }
 
     .selected-item-description {
-        width: 20rem;
+        flex: 1;
         margin-left: 1rem;
         margin-top: 1rem;
         margin-bottom: 0;
         padding: 0.5rem;
         background-color: #f8f8f8;
-        overflow: hidden;
     }
 
-    .loader {
-        margin: 3rem auto;
-        opacity: 0.5;
-
-        ::ng-deep circle {
-            stroke-width: 2px !important;
-        }
+    .loader{
+        width: 100%;
     }
 
     .selected{
         background-color: var(--primary-bg-color);
         color: #f8f8f8;
+    }
+
+    .overlay-spinner {
+        position: absolute;
+        inset: 0; /* покрывает весь контейнер */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.85); /* полупрозрачный фон, чтобы список был виден сквозь спиннер */
+        z-index: 10;
     }
 }

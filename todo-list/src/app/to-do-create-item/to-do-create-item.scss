@@ -1,0 +1,31 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    
+    ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+        width: 0;
+    }
+    .form-row {
+            margin-top: 1rem;
+            display: flex;
+        ::ng-deep .form-input::placeholder {
+            opacity: 0.5;
+        }
+    }
+    .form-field {
+        width: 100%;
+        flex-direction: row;
+        position: relative;
+    }
+
+    .error {
+        color: #c62828;
+        font-size: 10px;
+        position: absolute;
+        top: 100%;          /* ровно под низом родителя */
+        left: 0;            /* прижать к левому краю */
+        width: 100%;        /* растянуть на всю ширину (если нужно) */
+        margin-top: -6px;
+    }
+}

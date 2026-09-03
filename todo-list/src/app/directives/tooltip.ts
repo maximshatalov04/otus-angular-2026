@@ -8,7 +8,7 @@ import { DestroyRef, Directive, ElementRef, inject, input, Renderer2 } from '@an
   },
 })
 export class TooltipDirective {
-  readonly appTooltip = input<string | undefined>("");
+  readonly appTooltip = input<string | undefined | null>("");
   
   private readonly el = inject(ElementRef);
   private readonly renderer = inject(Renderer2);

@@ -4,14 +4,12 @@
       <li>
         <app-to-do-list-item
           [item]="todo"
-          [class.selected]="state.selectedItem()?.id === todo.id" />
+          [class.selected]="selectedId() === todo.id" />
       </li>
     }
   </ul>
 
-  <p class="selected-item-description">
-    {{state.selectedItem()?.description}}
-  </p>
+  <router-outlet />
 
   @if (state.loading()) {
     <div class="overlay-spinner">

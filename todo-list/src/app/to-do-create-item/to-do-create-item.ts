@@ -9,6 +9,8 @@ import { ToDoService } from '../services/to-do-service';
 import { ToastService } from '../services/toast-service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { finalize } from 'rxjs';
+import { Router } from '@angular/router';
+import { ToDoItem } from '../interfaces/to-do-item';
 
 @Component({
   selector: 'app-to-do-create-item',
@@ -18,6 +20,7 @@ import { finalize } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToDoCreateItem {
+  readonly #router = inject(Router);
   readonly #destroyRef = inject(DestroyRef);
   readonly state = inject(ToDoService);
   readonly toastService = inject(ToastService);
@@ -42,12 +45,13 @@ export class ToDoCreateItem {
 
     this.state.add({ text, description, status: 'InProgress' }).pipe(
       takeUntilDestroyed(this.#destroyRef),
-      finalize(()=> this.submitting.set(false)))
+      finalize(() => this.submitting.set(false)))
       // Черновик сбрасывается ТОЛЬКО на успехе. Ошибка не доходит до next
       // (её погасил стор), поэтому при упавшем запросе текст остаётся в поле.
-      .subscribe(()=>{
+      .subscribe((todo: ToDoItem) => {
         this.toastService.show('New task is added', 'success');
         this.formDirective().resetForm();
+        this.#router.navigate(['/tasks', todo.id]);
       });
   }
 }

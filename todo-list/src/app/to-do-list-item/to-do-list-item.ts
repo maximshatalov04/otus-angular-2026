@@ -11,6 +11,7 @@ import { MatCheckbox } from '@angular/material/checkbox';
 import { finalize } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ToastService } from '../services/toast-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-to-do-list-item',
@@ -21,6 +22,7 @@ import { ToastService } from '../services/toast-service';
 })
 export class ToDoListItem {
   readonly #destroyRef = inject(DestroyRef);
+  readonly #router = inject(Router);
   readonly state = inject(ToDoService);
   readonly toastService = inject(ToastService);
   readonly item = input.required<ToDoItem>();
@@ -39,7 +41,8 @@ export class ToDoListItem {
 
   onItemSelected(id: number | undefined) {
     if (id != null) {
-      this.state.select(id);
+      this.state.resetEditMode();
+      this.#router.navigate(['/tasks', id]);
     }
   }
 

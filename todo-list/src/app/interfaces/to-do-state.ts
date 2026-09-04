@@ -5,7 +5,7 @@ export type StateError = string | undefined;
 export interface ToDoState {
   todos: ToDoItem[];
   loading: boolean;
-  editModeId?: number; 
+  editModeId?: string; 
   filter: StatusFilter; 
   error: StateError; 
 }

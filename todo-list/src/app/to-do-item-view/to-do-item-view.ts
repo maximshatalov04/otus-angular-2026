@@ -1,7 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { ToDoService } from '../services/to-do-service';
 
 @Component({
@@ -12,9 +9,10 @@ import { ToDoService } from '../services/to-do-service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToDoItemView {
-    readonly #route = inject(ActivatedRoute);
-    readonly state = inject(ToDoService);
+  readonly state = inject(ToDoService);
 
-    readonly id = toSignal(this.#route.paramMap.pipe(map((params) => params.get('id'))));
-    readonly todo = computed(()=>this.state.visibleTodos().find(task=>task.id.toString() === this.id()));
+  readonly id = input.required<string>();
+  readonly todo = computed(() =>
+    this.state.visibleTodos().find((task) => task.id === this.id()),
+  );
 }

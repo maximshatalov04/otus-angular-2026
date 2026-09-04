@@ -74,7 +74,7 @@ export class ToDoService {
     );
   }
 
-  public delete(id: number): Observable<void> {
+  public delete(id: string): Observable<void> {
     this.#patch({ loading: true, error: undefined });
     
     return this.api.deleteTask(id).pipe(
@@ -127,7 +127,7 @@ export class ToDoService {
     });
   }
 
-  public setEditMode(id: number | undefined) {
+  public setEditMode(id: string | undefined) {
     this.#state.update(state => ({
       ...state,
       editModeId: id,

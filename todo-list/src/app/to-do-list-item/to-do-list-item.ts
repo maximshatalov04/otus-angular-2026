@@ -32,14 +32,14 @@ export class ToDoListItem {
   );
   readonly localText = signal<string>('');
 
-  onItemDeleted(id: number | undefined) {
+  onItemDeleted(id: string | undefined) {
     if (id != null) {
       this.state.delete(id).pipe(takeUntilDestroyed(this.#destroyRef))
         .subscribe(() => this.toastService.show("Task is deleted", "warning"));;
     }
   }
 
-  onItemSelected(id: number | undefined) {
+  onItemSelected(id: string | undefined) {
     if (id != null) {
       this.state.resetEditMode();
       this.#router.navigate(['/tasks', id]);

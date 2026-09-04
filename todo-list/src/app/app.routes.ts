@@ -1,15 +1,16 @@
 import { Routes } from '@angular/router';
 import { ToDoList } from './to-do-list/to-do-list';
-import { ToDoItemView } from './to-do-item-view/to-do-item-view';
+import { ToDoListContainer } from './to-do-list-container/to-do-list-container';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/tasks', pathMatch: 'full' },
-    { 
-        path: 'tasks', 
-        component: ToDoList,
-        children: [
-             { path: ':id', component: ToDoItemView }, // /tasks/1
-        ],
-     },
-    { path: '**', redirectTo: '/tasks' },
+  { path: '', redirectTo: '/tasks', pathMatch: 'full' },
+  {
+    path: 'tasks',
+    component: ToDoList,
+    children: [
+      { path: '', component: ToDoListContainer },
+      { path: ':id', component: ToDoListContainer }, // /tasks/1
+    ],
+  },
+  { path: '**', redirectTo: '/tasks' },
 ];

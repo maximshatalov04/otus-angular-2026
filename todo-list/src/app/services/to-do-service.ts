@@ -16,7 +16,6 @@ export class ToDoService {
   #state = signal<ToDoState>({
     todos: [],
     loading: true,
-    selectedItemId: undefined,
     editModeId: undefined,
     filter: 'All',
     error: undefined,
@@ -31,10 +30,7 @@ export class ToDoService {
 
     return todos?.filter(todo => todo.status === selectedStatus);
   });
-
   public readonly loading = computed(() => this.#state().loading);
-  public readonly selectedItem = computed(() =>
-    this.visibleTodos()?.find(t => t.id === this.#state().selectedItemId));
   public readonly editModeId = computed(() => this.#state().editModeId);
   public readonly selectedStatus = computed(() => this.#state().filter);
 
@@ -67,7 +63,6 @@ export class ToDoService {
           // Точечное обновление вместо перезапроса всего списка:
           // сервер уже вернул созданную задачу, второй GET не нужен.
           todos: [...this.#state().todos, created],
-          selectedItemId: created.id,
         }),
       ),
       catchError((error: Error) => {
@@ -79,17 +74,13 @@ export class ToDoService {
     );
   }
 
-  public delete(id: number): Observable<void> {
+  public delete(id: string): Observable<void> {
     this.#patch({ loading: true, error: undefined });
     
     return this.api.deleteTask(id).pipe(
       tap(() =>
         this.#patch({
           todos: this.#state().todos.filter((task) => task.id !== id),
-          selectedItemId:
-            this.#state().selectedItemId === id
-              ? undefined
-              : this.#state().selectedItemId,
         })),
         catchError((error: Error) => {
           this.#patch({ error: error.message });
@@ -130,14 +121,13 @@ export class ToDoService {
     this.#patch({ filter });
   }
 
-  public select(id: number): void {
+  public resetEditMode(): void {
     this.#patch({ 
-      selectedItemId: id,
       editModeId: undefined, 
     });
   }
 
-  public setEditMode(id: number | undefined) {
+  public setEditMode(id: string | undefined) {
     this.#state.update(state => ({
       ...state,
       editModeId: id,

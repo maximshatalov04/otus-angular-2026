@@ -3,16 +3,16 @@
     @for (todo of state.visibleTodos(); track todo.id) {
       <li>
         <app-to-do-list-item
-          [item]="todo"
-          [class.selected]="state.selectedItem()?.id === todo.id" />
+          [routerLink]="['/tasks', todo.id]"
+          routerLinkActive="selected"
+          [item]="todo"/>
       </li>
     }
   </ul>
 
-  <p class="selected-item-description">
-    {{state.selectedItem()?.description}}
-  </p>
-
+  @if (selectedToDo(); as selectedToDoData) {
+    <app-to-do-item-view [todo]="selectedToDoData"></app-to-do-item-view>
+  }
   @if (state.loading()) {
     <div class="overlay-spinner">
       <app-spinner class="loader" />

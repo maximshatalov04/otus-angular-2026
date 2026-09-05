@@ -1,43 +1,47 @@
-@if(item().id === state.editModeId()){
-    <mat-form-field appearance="outline" class="form-field">
-        <input 
-            class="form-input" 
-            matInput 
-            type = "text" 
-            [(ngModel)]="localText">
-    </mat-form-field>
 
-    <app-templated-button class="button button--add" 
-        appTooltip="Save title"
-        [isDisabled]="isInputEmpty()"
-        (clicked)="onItemSaved()"
-        bgColor="var(--primary-bg-color)">
-            <span class="save-icon">
-            <mat-icon>save</mat-icon>
-        </span>
-    </app-templated-button>
+@if(item().id === state.editModeId()){
+    <div class="item-container" appClickOutside (appClickOutside)="state.setEditMode(undefined)">
+        <mat-form-field appearance="outline" class="form-field">
+            <input 
+                class="form-input" 
+                matInput 
+                type = "text" 
+                [(ngModel)]="localText">
+        </mat-form-field>
+
+        <app-templated-button class="button button--add" 
+            appTooltip="Save title"
+            [isDisabled]="isInputEmpty()"
+            (clicked)="onItemSaved()"
+            bgColor="var(--primary-bg-color)">
+                <span class="save-icon">
+                <mat-icon>save</mat-icon>
+            </span>
+        </app-templated-button>
+    </div>
 } @else {
-<mat-checkbox 
-    [(ngModel)]="isCompleted" 
-    class="form-checkbox" 
-    (change)="onStatusChanged()"/>
-<button 
-    [appTooltip]="item().description" 
-    class="list-item-task"
-    [class.completed]="isCompleted()"
-    (click)="onItemSelected(item().id)"
-    (dblclick)="onSetEditing()">
-    <span >{{ item().text }}</span>
-</button>
-<app-templated-button 
-    appTooltip="Delete task"
-    class="button button--delete"
-    bgColor="transparent"
-    hoverColor="transparent"
-    (clicked)="onItemDeleted(item().id)"
-    >
-    <span class="delete-icon">
-        <mat-icon style="color:#f44336;">clear</mat-icon>
-    </span>
-</app-templated-button>
+    <div class="item-container">
+        <mat-checkbox 
+            [(ngModel)]="isCompleted" 
+            class="form-checkbox" 
+            (change)="onStatusChanged()"/>
+        <button 
+            [appTooltip]="item().description" 
+            class="list-item-task"
+            [class.completed]="isCompleted()"
+            (dblclick)="onSetEditing()">
+            <span >{{ item().text }}</span>
+        </button>
+        <app-templated-button 
+            appTooltip="Delete task"
+            class="button button--delete"
+            bgColor="transparent"
+            hoverColor="transparent"
+            (clicked)="onItemDeleted(item().id)"
+            >
+            <span class="delete-icon">
+                <mat-icon style="color:#f44336;">clear</mat-icon>
+            </span>
+        </app-templated-button>
+    </div>
 }

@@ -18,11 +18,11 @@ export class ApiClient {
     return this.http.post<ToDoItem>(this.apiUrl, dto).pipe(delay(randomDelay));
   }
 
-  updateTask(id: number, dto: Partial<ToDoItem>): Observable<ToDoItem> {
+  updateTask(id: string, dto: Partial<ToDoItem>): Observable<ToDoItem> {
     return this.http.patch<ToDoItem>(`${this.apiUrl}/${id}`, dto).pipe(delay(randomDelay));
   }
 
-  deleteTask(id: number): Observable<void> {
+  deleteTask(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(delay(randomDelay));
   }
 }

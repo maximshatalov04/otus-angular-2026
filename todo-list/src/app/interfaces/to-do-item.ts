@@ -1,6 +1,6 @@
 
 export interface ToDoItem {
-  id: number;
+  id: string;
   text: string;
   description: string | undefined | null;
   status: ToDoItemStatus;

@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
-import { ToDoService } from '../services/to-do-service';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ToDoItem } from '../interfaces/to-do-item';
 
 @Component({
   selector: 'app-to-do-item-view',
@@ -9,10 +9,5 @@ import { ToDoService } from '../services/to-do-service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToDoItemView {
-  readonly state = inject(ToDoService);
-
-  readonly id = input.required<string>();
-  readonly todo = computed(() =>
-    this.state.visibleTodos().find((task) => task.id === this.id()),
-  );
+  readonly todo = input.required<ToDoItem>();
 }

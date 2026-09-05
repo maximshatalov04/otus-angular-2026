@@ -1,18 +1,17 @@
-@let id =selectedId();
-
 <div class="to-do-list-wrapper">
   <ul class="to-do-list">
     @for (todo of state.visibleTodos(); track todo.id) {
       <li>
         <app-to-do-list-item
-          [item]="todo"
-          [class.selected]="id === todo.id" />
+          [routerLink]="['/tasks', todo.id]"
+          routerLinkActive="selected"
+          [item]="todo"/>
       </li>
     }
   </ul>
 
-  @if (id) {
-    <app-to-do-item-view [id]="id"></app-to-do-item-view>
+  @if (selectedToDo(); as selectedToDoData) {
+    <app-to-do-item-view [todo]="selectedToDoData"></app-to-do-item-view>
   }
   @if (state.loading()) {
     <div class="overlay-spinner">

@@ -11,18 +11,17 @@ import { MatCheckbox } from '@angular/material/checkbox';
 import { finalize } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ToastService } from '../services/toast-service';
-import { Router } from '@angular/router';
+import { ClickOutsideDirective } from '../directives/click-outside-directive';
 
 @Component({
   selector: 'app-to-do-list-item',
-  imports: [FormsModule, MatIconModule, TemplatedButton, TooltipDirective, MatFormField, MatInputModule, MatCheckbox ],
+  imports: [FormsModule, MatIconModule, TemplatedButton, TooltipDirective, MatFormField, MatInputModule, MatCheckbox, ClickOutsideDirective ],
   templateUrl: './to-do-list-item.html',
   styleUrl: './to-do-list-item.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToDoListItem {
   readonly #destroyRef = inject(DestroyRef);
-  readonly #router = inject(Router);
   readonly state = inject(ToDoService);
   readonly toastService = inject(ToastService);
   readonly item = input.required<ToDoItem>();
@@ -32,18 +31,9 @@ export class ToDoListItem {
   );
   readonly localText = signal<string>('');
 
-  onItemDeleted(id: string | undefined) {
-    if (id != null) {
-      this.state.delete(id).pipe(takeUntilDestroyed(this.#destroyRef))
-        .subscribe(() => this.toastService.show("Task is deleted", "warning"));;
-    }
-  }
-
-  onItemSelected(id: string | undefined) {
-    if (id != null) {
-      this.state.resetEditMode();
-      this.#router.navigate(['/tasks', id]);
-    }
+  onItemDeleted(id: string ) {
+    this.state.delete(id).pipe(takeUntilDestroyed(this.#destroyRef))
+      .subscribe(() => this.toastService.show("Task is deleted", "warning"));;
   }
 
   onSetEditing() {

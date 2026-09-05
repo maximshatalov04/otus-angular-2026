@@ -1,29 +1,26 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject, input, OnInit } from '@angular/core';
 import { ToDoListItem } from '../to-do-list-item/to-do-list-item';
 import { ToDoService } from '../services/to-do-service';
 import { Spinner } from '../ui/spinner/spinner';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ToDoItemView } from '../to-do-item-view/to-do-item-view';
 
 @Component({
   selector: 'app-to-do-list-container',
-  imports: [ToDoListItem, Spinner, ToDoItemView],
+  imports: [ToDoListItem, Spinner, ToDoItemView, RouterLink, RouterLinkActive],
   templateUrl: './to-do-list-container.html',
   styleUrl: './to-do-list-container.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToDoListContainer implements OnInit {
-  readonly #route = inject(ActivatedRoute);
   readonly #destroyRef = inject(DestroyRef);
-
   readonly state = inject(ToDoService);
-  readonly selectedId = toSignal(
-    this.#route.paramMap.pipe(
-      map((params) => params.get('id')),
-    ),
-    { requireSync: true },
+  
+  // Значение из маршрута
+  id = input.required<string | undefined>();
+  readonly selectedToDo = computed(() =>
+    this.state.visibleTodos().find((task) => task.id === this.id()),
   );
 
   ngOnInit(): void {

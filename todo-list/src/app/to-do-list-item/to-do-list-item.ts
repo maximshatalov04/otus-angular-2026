@@ -42,9 +42,6 @@ export class ToDoListItem {
   }
 
   onItemSaved() {
-    if(!this.item())
-      return;
-    
     const updatedItem = {... this.item(), text: this.localText()};
    
     this.state.update(updatedItem).pipe(
@@ -54,9 +51,6 @@ export class ToDoListItem {
   }
 
   onStatusChanged() {
-    if (!this.item())
-      return;
-
     const status: ToDoItemStatus = this.isCompleted() ? 'Completed' : 'InProgress';
     const updatedItem = { ... this.item(), status };
 

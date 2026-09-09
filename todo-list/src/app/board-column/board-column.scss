@@ -1,6 +1,10 @@
   :host {
       overflow-y: auto;
       height: calc(100vh - 110px - 40px);
+
+      ::ng-deep .form-input {
+          color: var(--mat-sys-primary) !important
+      }
   }
 
   .title {

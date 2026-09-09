@@ -26,18 +26,18 @@ export class ToDoCreateItem {
   readonly toastService = inject(ToastService);
   readonly submitting = signal(false);
   readonly form = new FormGroup({
-    text : new FormControl('', [Validators.required, Validators.minLength(3)]),
-    description : new FormControl(''),
+    text: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    description: new FormControl(''),
   });
 
   private readonly formDirective = viewChild.required(FormGroupDirective);
-  
+
   onSubmit(event: Event) {
     event.preventDefault();
-    
+
     if (this.form.invalid)
       return;
-    
+
     this.submitting.set(true);
 
     const text = this.form.controls.text.value!;
@@ -51,7 +51,7 @@ export class ToDoCreateItem {
       .subscribe((todo: ToDoItem) => {
         this.toastService.show('New task is added', 'success');
         this.formDirective().resetForm();
-        this.#router.navigate(['/tasks', todo.id]);
+        this.#router.navigate(['/backlog', todo.id]);
       });
   }
 }

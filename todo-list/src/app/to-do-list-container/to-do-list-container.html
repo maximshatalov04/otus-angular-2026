@@ -1,21 +1,19 @@
 <div class="to-do-list-wrapper">
   <ul class="to-do-list">
     @for (todo of state.visibleTodos(); track todo.id) {
-      <li>
-        <app-to-do-list-item
-          [routerLink]="['/tasks', todo.id]"
-          routerLinkActive="selected"
-          [item]="todo"/>
-      </li>
+    <li>
+      <app-to-do-list-item class="to-do-list-item" [routerLink]="['/backlog', todo.id]" routerLinkActive="selected"
+        [item]="todo" />
+    </li>
     }
   </ul>
 
   @if (selectedToDo(); as selectedToDoData) {
-    <app-to-do-item-view [todo]="selectedToDoData"></app-to-do-item-view>
+  <app-to-do-item-view [todo]="selectedToDoData" class="to-do-item-view"></app-to-do-item-view>
   }
   @if (state.loading()) {
-    <div class="overlay-spinner">
-      <app-spinner class="loader" />
-    </div>
+  <div class="overlay-spinner">
+    <app-spinner class="loader" />
+  </div>
   }
 </div>

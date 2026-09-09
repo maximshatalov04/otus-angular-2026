@@ -1,28 +1,35 @@
 {
   "todos": [
-        {
-        "id": "1",
-        "text": "Lorem ipsum dolor sit amet consectetur.",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat maiores eum rerum nulla! Inventore recusandae tempora quisquam, obcaecati ea at quia praesentium. Impedit cumque sint temporibus blanditiis exercitationem, nemo eligendi.",
-        "status": "Completed"
+    {
+      "id": "1",
+      "text": "Lorem ipsum dolor sit amet consectetur.",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat maiores eum rerum nulla! Inventore recusandae tempora quisquam, obcaecati ea at quia praesentium. Impedit cumque sint temporibus blanditiis exercitationem, nemo eligendi.",
+      "status": "Completed"
     },
     {
-        "id": "2",
-        "text": "Reprehenderit magnam nobis tempore ratione quasi?",
-        "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-        "status": "InProgress"
+      "id": "2",
+      "text": "Reprehenderit magnam nobis tempore ratione quasi?",
+      "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+      "status": "Completed"
     },
     {
-        "id": "3",
-        "text": "Ipsum delectus dicta reprehenderit illum enim!?",
-        "description": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
-        "status": "InProgress"
+      "id": "3",
+      "text": "Ipsum delectus dicta reprehenderit illum enim!?",
+      "description": "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+      "status": "ToDo"
     },
     {
-        "id": "4",
-        "text": "Eum explicabo quaerat reprehenderit?",
-        "description": "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?.",
-        "status": "InProgress"
+      "id": "4",
+      "text": "Eum explicabo quaerat reprehenderit?",
+      "description": "Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?.",
+      "status": "InProgress"
+    },
+    {
+      "text": "sadasd",
+      "description": "asdasasd",
+      "status": "ToDo",
+      "id": "jeS9cDTvWAI"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

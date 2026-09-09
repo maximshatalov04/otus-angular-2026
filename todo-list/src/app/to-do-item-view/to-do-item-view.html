@@ -1,3 +1,48 @@
-<p>
-    {{todo().description}}
-</p>
+<app-to-do-status-bar [status]="todo().status" (statusChanged)="onStatusChanged($event)" />
+<div class="task-title">
+    <p class="label">task:</p>
+    @if(textInEditModeId()){
+    <div class="item-container item-container--title" appClickOutside (appClickOutside)="textInEditModeId.set(false)">
+        <mat-form-field appearance="outline" class="form-field">
+            <input class="form-input" matInput type="text" [(ngModel)]="localText" />
+        </mat-form-field>
+        <app-templated-button class="button" [isDisabled]="isTextEmpty()" (clicked)="onTextSaved()"
+            bgColor="var(--primary-bg-color)">
+            <span class="save-icon">
+                <mat-icon>save</mat-icon>
+            </span>
+        </app-templated-button>
+    </div>
+    } @else {
+    <div class="item-container item-container--title">
+        <button class="list-item-task" appTooltip="Double click to Edit" (dblclick)="onSetTextEditing()">
+            <span>{{ todo().text }}</span>
+        </button>
+    </div>
+    }
+</div>
+<div class="task-description">
+    <p class="label">description:</p>
+    @if(descriptionInEditModeId()){
+    <div class="item-container description-container" appClickOutside
+        (appClickOutside)="descriptionInEditModeId.set(false)">
+        <mat-form-field appearance="outline" class="form-field">
+            <textarea class="form-input description-input" matInput type="text"
+                [(ngModel)]="localDescription"></textarea>
+        </mat-form-field>
+
+        <app-templated-button class="button" (clicked)="onDescriptionSaved()" bgColor="var(--primary-bg-color)">
+            <span class="save-icon">
+                <mat-icon>save</mat-icon>
+            </span>
+        </app-templated-button>
+    </div>
+    } @else {
+    <div class="item-container description-container">
+        <button class="list-item-task description" appTooltip="Double click to Edit"
+            (dblclick)="onSetDescriptionEditing()">
+            {{ todo().description }}
+        </button>
+    </div>
+    }
+</div>

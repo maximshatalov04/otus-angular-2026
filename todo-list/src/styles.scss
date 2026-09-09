@@ -5,34 +5,36 @@
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 
-:root{
-  --primary-bg-color: #008484;
-  --primary-bg-color-opacity: #008484f2;
+:root {
+  --primary-bg-color: #1e293b;
+  --primary-bg-color-opacity: #1e293bf2;
+  --mat-sys-primary: var(--primary-bg-color);
+  --secondary-bg-color: #334155;
 }
 
 .delete-icon {
-    padding: 0.3rem 0;
-    display: flex;
+  padding: 0.3rem 0;
+  display: flex;
 }
 
 .add-icon {
-    width: 2.5rem;
-    padding: 0.3rem 0;
-    display: flex;
-    justify-content: center;
+  width: 2.5rem;
+  padding: 0.3rem 0;
+  display: flex;
+  justify-content: center;
 }
 
 .save-icon {
-    width: 1.6rem;
-    padding: 0.4rem 0;
-    display: flex;
-    justify-content: center;
+  width: 1.6rem;
+  padding: 0.4rem 0;
+  display: flex;
+  justify-content: center;
 }
 
 .app-tooltip {
   position: absolute;
   padding: 8px 12px;
-  background-color:  var(--primary-bg-color-opacity);
+  background-color: var(--primary-bg-color-opacity);
   color: #fff;
   font-size: 14px;
   border-radius: 6px;
@@ -54,25 +56,41 @@
     opacity: 0;
     transform: translateY(5px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-
 html {
-  height: 100%;
-  @include mat.theme(
-    (
-      color: (
-        primary: mat.$cyan-palette,
+  @include mat.theme((color: (primary: mat.$cyan-palette,
         tertiary: mat.$orange-palette,
       ),
       typography: Roboto,
       density: 0,
-    )
-  );
+    ));
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+app-root {
+  flex: 1;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 body {
@@ -88,8 +106,8 @@ body {
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
 
-  // Reset the user agent margin.
-  margin: 0;
-  height: 100%;
+  display: flex;
+  /* чтобы app-root мог занять всё пространство */
 }
+
 /* You can add global styles to this file, and also import other style files */

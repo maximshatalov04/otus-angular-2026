@@ -1,0 +1,29 @@
+.status-button-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+}
+
+.status-button {
+    background-color: whitesmoke;
+    color: var(--secondary-bg-color);
+    border: 2px solid var(--secondary-bg-color);
+    /* обводка */
+    padding: 5px 12px;
+    border-radius: 4px;
+    margin-right: 1rem;
+    cursor: pointer;
+
+    &:hover {
+        border-color: var(--primary-bg-color);
+        /* цвет обводки при наведении */
+        color: var(--primary-bg-color);
+        transform: scale(1.05);
+    }
+
+    &.active {
+        background-color: var(--secondary-bg-color);
+        color: whitesmoke;
+    }
+}

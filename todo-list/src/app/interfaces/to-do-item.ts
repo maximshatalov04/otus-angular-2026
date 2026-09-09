@@ -6,8 +6,23 @@ export interface ToDoItem {
   status: ToDoItemStatus;
 }
 
-export type ToDoItemStatus = 'InProgress' | 'Completed';
+export type ToDoItemStatus = 'ToDo' | 'InProgress' | 'Completed';
 export type StatusFilter = ToDoItemStatus | 'All';
+export interface StatusOption {
+  value: StatusFilter;
+  label: string;
+}
+
+export const STATUS_OPTIONS: Record<ToDoItemStatus, string> = {
+  ToDo: 'To Do',
+  InProgress: 'In progress',
+  Completed: 'Completed',
+};
+
+export const STATUS_FILTERS: Record<StatusFilter, string> = {
+  All: 'All',
+  ...STATUS_OPTIONS,
+};
 
 export interface CreateToDoItemDto {
   text: string;

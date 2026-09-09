@@ -41,7 +41,10 @@ export class ToDoItemView {
 
     this.#state.update(updatedItem).pipe(
       takeUntilDestroyed(this.#destroyRef),
-      finalize(() => this.#state.setEditMode(undefined)))
+      finalize(() => {
+        this.textInEditModeId.set(false);
+        this.descriptionInEditModeId.set(false);
+      }))
       .subscribe(() => this.#toastService.show("Task status is updated", "info"));
   }
 

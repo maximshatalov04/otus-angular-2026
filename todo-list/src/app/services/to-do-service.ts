@@ -16,7 +16,6 @@ export class ToDoService {
   #state = signal<ToDoState>({
     todos: [],
     loading: true,
-    editModeId: undefined,
     filter: 'All',
     error: undefined,
   });
@@ -33,7 +32,6 @@ export class ToDoService {
   });
 
   public readonly loading = computed(() => this.#state().loading);
-  public readonly editModeId = computed(() => this.#state().editModeId);
   public readonly selectedStatus = computed(() => this.#state().filter);
 
   load(): Observable<ToDoItem[]> {
@@ -121,19 +119,6 @@ export class ToDoService {
 
   setFilter(filter: StatusFilter): void {
     this.#patch({ filter });
-  }
-
-  public resetEditMode(): void {
-    this.#patch({
-      editModeId: undefined,
-    });
-  }
-
-  public setEditMode(id: string | undefined) {
-    this.#state.update(state => ({
-      ...state,
-      editModeId: id,
-    }));
   }
 
   #patch(part: Partial<ToDoState>): void {

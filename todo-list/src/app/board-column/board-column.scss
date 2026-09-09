@@ -1,10 +1,22 @@
+  :host {
+      overflow-y: auto;
+      height: calc(100vh - 110px - 40px);
+  }
+
+  .title {
+      font-weight: 200;
+      padding-left: 0.5rem;
+      font-size: 1.5rem;
+  }
+
   .to-do-list {
       overflow-y: auto;
       direction: rtl;
-      height: 100%;
+      height: calc(100% - 20px);
       padding: 0;
       padding-left: 5px;
       margin: 0;
+      margin-top: 1rem;
       list-style-type: none;
       opacity: 1;
       transform: scale(1);

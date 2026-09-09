@@ -1,3 +1,24 @@
+.board-wrapper {
+    position: relative;
+    background-color: white;
+    display: flex;
+    height: calc(100vh - 110px - 2*20px);
+    padding: 20px;
+    /* если у родителя flex с flex-grow, иначе поставь min-height */
+    overflow-x: auto;
+
+    // Отступы между колонками
+    .board-column {
+        flex: 0 0 auto; // колонки не сжимаются, не растягиваются — ширина задаётся внутри
+        margin-right: 16px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+
 .loader {
     width: 100%;
 }

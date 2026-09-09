@@ -8,10 +8,6 @@ export interface ToDoItem {
 
 export type ToDoItemStatus = 'ToDo' | 'InProgress' | 'Completed';
 export type StatusFilter = ToDoItemStatus | 'All';
-export interface StatusOption {
-  value: StatusFilter;
-  label: string;
-}
 
 export const STATUS_OPTIONS: Record<ToDoItemStatus, string> = {
   ToDo: 'To Do',

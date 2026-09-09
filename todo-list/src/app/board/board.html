@@ -1,1 +1,12 @@
-<p>board works!</p>
+<div class="board-wrapper">
+    @for (option of statusOptions | keyvalue : keepOrder; track option.key) {
+    <div class="board-column">
+        <app-board-column [status]="getStatus(option.key)" [todos]="filterTodos(option.key)"></app-board-column>
+    </div>
+    }
+    @if (state.loading()) {
+    <div class="overlay-spinner">
+        <app-spinner class="loader" />
+    </div>
+    }
+</div>

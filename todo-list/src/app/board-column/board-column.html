@@ -1,0 +1,10 @@
+<div class="title">
+    <h1>{{status()}} ({{todosCount()}})</h1>
+</div>
+<ul class="to-do-list">
+    @for (todo of todos(); track todo.id) {
+    <li>
+        <app-to-do-list-item class="to-do-list-item" [item]="todo" />
+    </li>
+    }
+</ul>

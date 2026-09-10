@@ -1,28 +1,26 @@
-.board-wrapper {
+:host {
     position: relative;
     background-color: white;
     display: flex;
-    height: calc(100vh - 110px - 2*20px);
+    height: calc(100vh - 110px - 2*20px - 2px);
     padding: 20px;
     /* если у родителя flex с flex-grow, иначе поставь min-height */
     overflow-x: auto;
-
-    // Отступы между колонками
-    .board-column {
-        flex: 0 0 auto; // колонки не сжимаются, не растягиваются — ширина задаётся внутри
-        margin-right: 16px;
-
-        &:last-child {
-            margin-right: 0;
-        }
-    }
 }
 
+// Отступы между колонками
+.board-column {
+    flex: 0 0 auto; // колонки не сжимаются, не растягиваются — ширина задаётся внутри
+    margin-right: 16px;
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
 
 .loader {
     width: 100%;
 }
-
 
 .overlay-spinner {
     position: absolute;

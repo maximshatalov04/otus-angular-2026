@@ -34,7 +34,7 @@ export class ToDoListItem {
 
   onItemDeleted(id: string) {
     this.state.delete(id).pipe(takeUntilDestroyed(this.#destroyRef))
-      .subscribe(() => this.toastService.show("Task is deleted", "warning"));;
+      .subscribe(() => this.toastService.show("Task is deleted", "warning"));
   }
 
   onSetEditing() {

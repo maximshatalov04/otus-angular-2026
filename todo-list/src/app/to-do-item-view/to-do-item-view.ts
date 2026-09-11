@@ -36,8 +36,6 @@ export class ToDoItemView {
   );
 
   onStatusChanged(status: ToDoItemStatus) {
-    console.log("STATUS: ", status);
-
     const updatedItem = { ... this.todo(), status };
 
     this.#state.update(updatedItem).pipe(

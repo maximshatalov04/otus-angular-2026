@@ -19,9 +19,6 @@ export class ItemsFilter {
   readonly filterOrder = FILTER_ORDER;
 
   onFilterChange(value: ToDoItemStatus) {
-    const selectedValue = value;
-    console.log('Selected filter:', selectedValue);
-
-    this.state.setFilter(selectedValue);
+    this.state.setFilter(value);
   }
 }

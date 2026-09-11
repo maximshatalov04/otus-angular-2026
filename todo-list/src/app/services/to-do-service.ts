@@ -3,7 +3,7 @@ import { ToDoState } from '../interfaces/to-do-state';
 import { CreateToDoItemDto, ToDoItem } from '../interfaces/to-do-item';
 import { ApiClient } from './api-client';
 import { ToastService } from './toast-service';
-import { catchError, EMPTY, finalize, Observable, tap } from 'rxjs';
+import { catchError, EMPTY, finalize, Observable, switchMap, tap } from 'rxjs';
 import { ToDoItemStatus, StatusFilter } from '../constants/item-statuses';
 
 @Injectable({
@@ -40,14 +40,17 @@ export class ToDoService {
 
     return this.api.getTodos().pipe(
       tap((todos) => this.#patch({ todos })),
-      catchError((error: Error) => {
+      catchError((error: Error): Observable<ToDoItem[]> => {
         this.#patch({ error: error.message });
-        this.toastService.show("Can't load todos", 'error')
-        return EMPTY;
+        return this.toastService.show("Can't load todos", 'error').pipe(
+          switchMap(() => EMPTY),
+          catchError(() => EMPTY)
+        );
       }),
       finalize(() => this.#patch({ loading: false })),
     );
   }
+
 
   public add(todo: CreateToDoItemDto): Observable<ToDoItem> {
     this.#patch({ loading: true, error: undefined });
@@ -66,10 +69,12 @@ export class ToDoService {
           todos: [...this.#state().todos, created],
         }),
       ),
-      catchError((error: Error) => {
+      catchError((error: Error): Observable<ToDoItem> => {
         this.#patch({ error: error.message });
-        this.toastService.show("Can't add the task", "error")
-        return EMPTY;
+        return this.toastService.show("Can't add the task", 'error').pipe(
+          switchMap(() => EMPTY),
+          catchError(() => EMPTY)
+        );
       }),
       finalize(() => this.#patch({ loading: false })),
     );
@@ -83,10 +88,12 @@ export class ToDoService {
         this.#patch({
           todos: this.#state().todos.filter((task) => task.id !== id),
         })),
-      catchError((error: Error) => {
+      catchError((error: Error): Observable<void> => {
         this.#patch({ error: error.message });
-        this.toastService.show("Can't delete the task", "error")
-        return EMPTY;
+        return this.toastService.show("Can't delete the task", 'error').pipe(
+          switchMap(() => EMPTY),
+          catchError(() => EMPTY)
+        );
       }),
       finalize(() => this.#patch({ loading: false })),
     );
@@ -109,10 +116,12 @@ export class ToDoService {
               task.id === updated.id ? updated : task,
             ),
           })),
-      catchError((error: Error) => {
+      catchError((error: Error): Observable<ToDoItem> => {
         this.#patch({ error: error.message });
-        this.toastService.show("Can't update the task", "error")
-        return EMPTY;
+        return this.toastService.show("Can't update the task", 'error').pipe(
+          switchMap(() => EMPTY),
+          catchError(() => EMPTY)
+        );
       }),
       finalize(() => this.#patch({ loading: false })),
     );

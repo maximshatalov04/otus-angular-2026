@@ -1,9 +1,10 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { ToDoState } from '../interfaces/to-do-state';
-import { CreateToDoItemDto, StatusFilter, ToDoItem, ToDoItemStatus } from '../interfaces/to-do-item';
+import { CreateToDoItemDto, ToDoItem } from '../interfaces/to-do-item';
 import { ApiClient } from './api-client';
 import { ToastService } from './toast-service';
 import { catchError, EMPTY, finalize, Observable, tap } from 'rxjs';
+import { ToDoItemStatus, StatusFilter } from '../constants/item-statuses';
 
 @Injectable({
   providedIn: 'root',

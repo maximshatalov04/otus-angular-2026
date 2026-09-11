@@ -1,4 +1,5 @@
-import { StatusFilter, ToDoItem } from "./to-do-item";
+import { StatusFilter } from "../constants/item-statuses";
+import { ToDoItem } from "./to-do-item";
 
 export type StateError = string | undefined;
 

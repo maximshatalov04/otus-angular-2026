@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { STATUS_OPTIONS, ToDoItemStatus } from '../interfaces/to-do-item';
-import { KeyValuePipe } from '@angular/common';
 import { TooltipDirective } from "../directives/tooltip";
+import { STATUS_OPTIONS, STATUS_ORDER, ToDoItemStatus } from '../constants/item-statuses';
 
 @Component({
   selector: 'app-to-do-status-bar',
-  imports: [KeyValuePipe, TooltipDirective, TooltipDirective],
+  imports: [TooltipDirective, TooltipDirective],
   templateUrl: './to-do-status-bar.html',
   styleUrl: './to-do-status-bar.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15,16 +14,9 @@ export class ToDoStatusBar {
   readonly statusChanged = output<ToDoItemStatus>();
 
   readonly statusOptions = STATUS_OPTIONS;
-  readonly keepOrder = () => 0;
+  readonly statusOrder = STATUS_ORDER;
 
-  onStatusChanged(rawStatus: string) {
-    if (!(rawStatus in STATUS_OPTIONS))
-      return;
-
-    const status = rawStatus as ToDoItemStatus; // теперь это безопасный ключ
-    if (status === this.status())
-      return;
-
+  onStatusChanged(status: ToDoItemStatus) {
     this.statusChanged.emit(status);
   }
 }

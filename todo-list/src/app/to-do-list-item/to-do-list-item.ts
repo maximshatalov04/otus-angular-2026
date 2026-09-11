@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject, input, linkedSignal, signal } from '@angular/core';
-import { ToDoItem, ToDoItemStatus } from '../interfaces/to-do-item';
+import { ChangeDetectionStrategy, Component, computed, inject, input, linkedSignal, signal } from '@angular/core';
+import { ToDoItem } from '../interfaces/to-do-item';
 import { MatIconModule } from '@angular/material/icon';
 import { TemplatedButton } from "../ui/templated-button/templated-button";
 import { TooltipDirective } from '../directives/tooltip';
@@ -11,6 +11,7 @@ import { MatCheckbox } from '@angular/material/checkbox';
 import { finalize, take } from 'rxjs';
 import { ToastService } from '../services/toast-service';
 import { ClickOutsideDirective } from '../directives/click-outside-directive';
+import { ToDoItemStatus } from '../constants/item-statuses';
 
 @Component({
   selector: 'app-to-do-list-item',

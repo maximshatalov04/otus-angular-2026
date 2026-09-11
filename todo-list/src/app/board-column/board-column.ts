@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { STATUS_OPTIONS, ToDoItem, ToDoItemStatus } from '../interfaces/to-do-item';
+import { ToDoItem } from '../interfaces/to-do-item';
 import { ToDoListItem } from '../to-do-list-item/to-do-list-item';
+import { STATUS_OPTIONS, ToDoItemStatus } from '../constants/item-statuses';
 
 @Component({
   selector: 'app-board-column',

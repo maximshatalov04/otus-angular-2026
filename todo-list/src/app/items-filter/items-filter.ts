@@ -4,19 +4,19 @@ import { ToDoService } from '../services/to-do-service';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOption, MatSelect } from '@angular/material/select';
-import { STATUS_FILTERS, ToDoItemStatus } from '../interfaces/to-do-item';
-import { KeyValuePipe } from '@angular/common';
+import { FILTER_ORDER, STATUS_FILTERS, ToDoItemStatus } from '../constants/item-statuses';
 
 @Component({
   selector: 'app-items-filter',
-  imports: [FormsModule, MatLabel, MatFormFieldModule, MatSelect, MatOption, KeyValuePipe],
+  imports: [FormsModule, MatLabel, MatFormFieldModule, MatSelect, MatOption],
   templateUrl: './items-filter.html',
   styleUrl: './items-filter.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemsFilter {
   readonly state = inject(ToDoService);
-  readonly statusOptions = STATUS_FILTERS;
+  readonly filterOptions = STATUS_FILTERS;
+  readonly filterOrder = FILTER_ORDER;
 
   onFilterChange(value: ToDoItemStatus) {
     const selectedValue = value;

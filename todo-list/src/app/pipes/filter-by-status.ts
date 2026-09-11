@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from "@angular/core";
-import { ToDoItem, ToDoItemStatus } from "../interfaces/to-do-item";
+import { ToDoItem } from "../interfaces/to-do-item";
+import { ToDoItemStatus } from "../constants/item-statuses";
 
 @Pipe({
     name: 'filterByStatus',

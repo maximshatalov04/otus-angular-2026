@@ -1,9 +1,9 @@
 <ul class="status-button-list">
-    @for (option of statusOptions | keyvalue : keepOrder; track option.key) {
+    @for (option of statusOrder; track option) {
     <li>
-        <button class="status-button" [class.active]="status()?.toString() === option.key" appTooltip="Change status"
-            (click)="onStatusChanged(option.key)">
-            {{ option.value }}
+        <button class="status-button" [class.active]="status() === option" appTooltip="Change status"
+            (click)="onStatusChanged(option)">
+            {{ statusOptions[option] }}
         </button>
     </li>
     }

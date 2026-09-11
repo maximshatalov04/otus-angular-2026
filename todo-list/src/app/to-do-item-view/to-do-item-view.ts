@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject, input, signal } from '@angular/core';
-import { ToDoItem, ToDoItemStatus } from '../interfaces/to-do-item';
+import { ToDoItem } from '../interfaces/to-do-item';
 import { ToDoStatusBar } from '../to-do-status-bar/to-do-status-bar';
 import { ToDoService } from '../services/to-do-service';
 import { ToastService } from '../services/toast-service';
@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 import { TooltipDirective } from "../directives/tooltip";
 import { MatInput } from '@angular/material/input';
+import { ToDoItemStatus } from '../constants/item-statuses';
 
 @Component({
   selector: 'app-to-do-item-view',

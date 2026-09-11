@@ -8,8 +8,7 @@ import { MatFormField } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
-import { finalize } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { finalize, take } from 'rxjs';
 import { ToastService } from '../services/toast-service';
 import { ClickOutsideDirective } from '../directives/click-outside-directive';
 
@@ -21,7 +20,6 @@ import { ClickOutsideDirective } from '../directives/click-outside-directive';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToDoListItem {
-  readonly #destroyRef = inject(DestroyRef);
   readonly state = inject(ToDoService);
   readonly toastService = inject(ToastService);
   readonly item = input.required<ToDoItem>();
@@ -33,7 +31,7 @@ export class ToDoListItem {
   readonly textInEditModeId = signal(false);
 
   onItemDeleted(id: string) {
-    this.state.delete(id).pipe(takeUntilDestroyed(this.#destroyRef))
+    this.state.delete(id).pipe(take(1))
       .subscribe(() => this.toastService.show("Task is deleted", "warning"));
   }
 
@@ -46,7 +44,7 @@ export class ToDoListItem {
     const updatedItem = { ... this.item(), text: this.localText() };
 
     this.state.update(updatedItem).pipe(
-      takeUntilDestroyed(this.#destroyRef),
+      take(1),
       finalize(() => this.textInEditModeId.set(false)))
       .subscribe(() => this.toastService.show("Task is updated", "info"));
   }
@@ -56,7 +54,7 @@ export class ToDoListItem {
     const updatedItem = { ... this.item(), status };
 
     this.state.update(updatedItem).pipe(
-      takeUntilDestroyed(this.#destroyRef),
+      take(1),
       finalize(() => this.textInEditModeId.set(false)))
       .subscribe(() => this.toastService.show("Task status is updated", "info"));
   }

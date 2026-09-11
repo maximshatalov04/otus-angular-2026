@@ -1,0 +1,29 @@
+<div class="layout-wrapper">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>Tasks Board</h2>
+        </div>
+
+        <ul class="nav-list">
+            <li>
+                <a routerLink="/backlog" routerLinkActive="active" class="nav-item">
+                    <mat-icon>list_alt</mat-icon>
+                    <span>Backlog</span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/board" routerLinkActive="active" class="nav-item">
+                    <mat-icon>dashboard</mat-icon>
+                    <span>Board</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <app-title-bar class="title-bar">
+            <p>{{title()}}</p>
+        </app-title-bar>
+        <router-outlet></router-outlet>
+    </main>
+</div>

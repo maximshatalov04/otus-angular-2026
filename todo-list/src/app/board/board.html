@@ -1,0 +1,11 @@
+@for (status of statusOrder; track status) {
+  <div class="board-column">
+    <app-board-column [status]="status"
+      [todos]="state.todos() | filterByStatus: status"></app-board-column>
+  </div>
+}
+@if (state.loading()) {
+<div class="overlay-spinner">
+    <app-spinner class="loader" />
+</div>
+}

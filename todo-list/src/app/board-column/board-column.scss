@@ -1,0 +1,65 @@
+  :host {
+      overflow-y: auto;
+      height: calc(100vh - 110px - 40px);
+
+      ::ng-deep .form-input {
+          color: var(--mat-sys-primary) !important
+      }
+  }
+
+  .title {
+      font-weight: 200;
+      padding-left: 0.5rem;
+      font-size: 1.5rem;
+  }
+
+  .to-do-list {
+      overflow-y: auto;
+      direction: rtl;
+      height: calc(100% - 40px);
+      padding: 0;
+      padding-left: 5px;
+      margin: 0;
+      margin-top: 1rem;
+      list-style-type: none;
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .to-do-list li {
+      direction: ltr;
+      margin-top: 1rem;
+  }
+
+  .to-do-list li:first-child {
+      margin-top: 0;
+  }
+
+  // Стилизация скролл-бара
+  .to-do-list::-webkit-scrollbar {
+      width: 2px;
+      /* тонкая полоса */
+  }
+
+  .to-do-list::-webkit-scrollbar-track {
+      background: transparent;
+      /* прозрачная дорожка — визуально «без фона» */
+  }
+
+  .to-do-list::-webkit-scrollbar-thumb {
+      background-color: #aaa;
+      /* цвет ползунка */
+      border-radius: 4px;
+      /* скругление */
+  }
+
+  .to-do-list::-webkit-scrollbar-thumb:hover {
+      background-color: #888;
+      /* цвет при наведении */
+  }
+
+  /* Убираем кнопки-стрелки (если есть) */
+  .to-do-list::-webkit-scrollbar-button {
+      display: none;
+  }

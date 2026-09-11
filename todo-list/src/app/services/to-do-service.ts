@@ -1,9 +1,10 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { ToDoState } from '../interfaces/to-do-state';
-import { CreateToDoItemDto, StatusFilter, ToDoItem, ToDoItemStatus } from '../interfaces/to-do-item';
+import { CreateToDoItemDto, ToDoItem } from '../interfaces/to-do-item';
 import { ApiClient } from './api-client';
 import { ToastService } from './toast-service';
 import { catchError, EMPTY, finalize, Observable, tap } from 'rxjs';
+import { ToDoItemStatus, StatusFilter } from '../constants/item-statuses';
 
 @Injectable({
   providedIn: 'root',
@@ -16,11 +17,11 @@ export class ToDoService {
   #state = signal<ToDoState>({
     todos: [],
     loading: true,
-    editModeId: undefined,
     filter: 'All',
     error: undefined,
   });
 
+  readonly todos = computed(() => this.#state().todos);
   readonly visibleTodos = computed(() => {
     const todos = this.#state().todos;
     const selectedStatus = this.#state().filter;
@@ -30,8 +31,8 @@ export class ToDoService {
 
     return todos?.filter(todo => todo.status === selectedStatus);
   });
+
   public readonly loading = computed(() => this.#state().loading);
-  public readonly editModeId = computed(() => this.#state().editModeId);
   public readonly selectedStatus = computed(() => this.#state().filter);
 
   load(): Observable<ToDoItem[]> {
@@ -50,7 +51,7 @@ export class ToDoService {
 
   public add(todo: CreateToDoItemDto): Observable<ToDoItem> {
     this.#patch({ loading: true, error: undefined });
-    
+
     const newItem: CreateToDoItemDto = {
       text: todo.text.trim(),
       description: todo.description?.trim(),
@@ -76,18 +77,18 @@ export class ToDoService {
 
   public delete(id: string): Observable<void> {
     this.#patch({ loading: true, error: undefined });
-    
+
     return this.api.deleteTask(id).pipe(
       tap(() =>
         this.#patch({
           todos: this.#state().todos.filter((task) => task.id !== id),
         })),
-        catchError((error: Error) => {
-          this.#patch({ error: error.message });
-          this.toastService.show("Can't delete the task", "error")
-          return EMPTY;
-        }),
-        finalize(() => this.#patch({ loading: false })),
+      catchError((error: Error) => {
+        this.#patch({ error: error.message });
+        this.toastService.show("Can't delete the task", "error")
+        return EMPTY;
+      }),
+      finalize(() => this.#patch({ loading: false })),
     );
   }
 
@@ -102,36 +103,23 @@ export class ToDoService {
 
     return this.api.updateTask(itemToChange.id, itemToChange).pipe(
       tap(
-      (updated)=>
-        this.#patch({
-          todos: this.#state().todos.map((task)=>
-            task.id === updated.id ? updated : task,
-        ),
-        })),
-        catchError((error: Error) =>{
-          this.#patch({ error: error.message });
-          this.toastService.show("Can't update the task", "error")
-          return EMPTY;
-        }),
-        finalize(() => this.#patch({ loading:false})),
+        (updated) =>
+          this.#patch({
+            todos: this.#state().todos.map((task) =>
+              task.id === updated.id ? updated : task,
+            ),
+          })),
+      catchError((error: Error) => {
+        this.#patch({ error: error.message });
+        this.toastService.show("Can't update the task", "error")
+        return EMPTY;
+      }),
+      finalize(() => this.#patch({ loading: false })),
     );
   }
 
   setFilter(filter: StatusFilter): void {
     this.#patch({ filter });
-  }
-
-  public resetEditMode(): void {
-    this.#patch({ 
-      editModeId: undefined, 
-    });
-  }
-
-  public setEditMode(id: string | undefined) {
-    this.#state.update(state => ({
-      ...state,
-      editModeId: id,
-    }));
   }
 
   #patch(part: Partial<ToDoState>): void {

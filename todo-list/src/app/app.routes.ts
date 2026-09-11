@@ -1,16 +1,19 @@
 import { Routes } from '@angular/router';
-import { ToDoList } from './to-do-list/to-do-list';
 import { ToDoListContainer } from './to-do-list-container/to-do-list-container';
+import { Backlog } from './backlog/backlog';
+import { Board } from './board/board';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/tasks', pathMatch: 'full' },
+  { path: '', redirectTo: '/backlog', pathMatch: 'full' },
   {
-    path: 'tasks',
-    component: ToDoList,
+    path: 'backlog',
+    component: Backlog,
+    title: 'Backlog',
     children: [
       { path: '', component: ToDoListContainer },
-      { path: ':id', component: ToDoListContainer }, // /tasks/1
+      { path: ':id', component: ToDoListContainer }, // /backlog/1
     ],
   },
-  { path: '**', redirectTo: '/tasks' },
+  { path: 'board', component: Board, title: 'Board' },
+  { path: '**', redirectTo: '/backlog' },
 ];

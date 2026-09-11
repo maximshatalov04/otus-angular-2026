@@ -14,19 +14,20 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (
       let message = 'Неизвестная ошибка API';
 
       if (error.error instanceof ErrorEvent) {
-        // Клиентская ошибка (синтаксис, сеть и т.п.)
         message = `Клиентская ошибка: ${error.error.message}`;
       } else {
-        // Серверная ошибка (HTTP статус, тело ответа)
         message = error.status
           ? `Серверная ошибка: ${error.status} ${error.message}`
           : `Серверная ошибка: ${error.message}`;
       }
 
       console.error(message, error);
-      toastService.show(message, 'error');
 
-      return throwError(() => new Error(message));
+      // Возвращаем поток, который вызывает show(), а затем завершается.
+      return toastService.show(message, 'error').pipe(
+        // После показа тоста продолжаем поток с ошибкой для потребителя
+        () => throwError(() => new Error(message))
+      );
     }),
   );
 };

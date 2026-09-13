@@ -34,5 +34,9 @@
         "TASK_STATUS_UPDATED": "Task status is updated",
         "TASK_UPDATED_SUCCESS": "Task is updated",
         "TASK_DELETED_SUCCESS": "Task is deleted"
+    },
+    "VALIDATOR": {
+        "TASK_TITLE_IS_REQUIRED": "Task title is required",
+        "MIN_LENGTH": "Min length is"
     }
 }

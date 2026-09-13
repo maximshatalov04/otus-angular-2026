@@ -34,5 +34,9 @@
         "TASK_STATUS_UPDATED": "Статус задачи обновлён",
         "TASK_UPDATED_SUCCESS": "Задача обновлена",
         "TASK_DELETED_SUCCESS": "Задача удалена"
+    },
+    "VALIDATOR": {
+        "TASK_TITLE_IS_REQUIRED": "Название задачи обязательно",
+        "MIN_LENGTH": "Минимальная длина составляет"
     }
 }

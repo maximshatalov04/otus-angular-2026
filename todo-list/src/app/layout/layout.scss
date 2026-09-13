@@ -2,6 +2,7 @@
     display: flex;
     height: 100%;
     width: 1440px;
+    overflow-x: hidden;
 }
 
 .sidebar {
@@ -50,6 +51,8 @@
 
 .main-content {
     width: 100%;
+    // позиционирование toasts
+    position: relative;
 }
 
 .title-bar {

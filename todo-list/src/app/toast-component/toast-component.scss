@@ -1,6 +1,6 @@
  .toasts-container {
      position: absolute;
-     top: 1rem;
+     top: calc(110px + 1rem);
      right: 1rem;
      z-index: 9999;
      display: flex;

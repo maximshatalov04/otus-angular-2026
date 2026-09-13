@@ -8,7 +8,7 @@ import { TooltipDirective } from '../directives/tooltip';
 import { ToDoService } from '../services/to-do-service';
 import { ToastService } from '../services/toast-service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { finalize } from 'rxjs';
+import { finalize, switchMap, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToDoItem } from '../interfaces/to-do-item';
 
@@ -45,14 +45,13 @@ export class ToDoCreateItem {
 
     this.state.add({ text, description, status: 'InProgress' }).pipe(
       takeUntilDestroyed(this.#destroyRef),
-      finalize(() => this.submitting.set(false)))
-      // Черновик сбрасывается ТОЛЬКО на успехе. Ошибка не доходит до next
-      // (её погасил стор), поэтому при упавшем запросе текст остаётся в поле.
-      .subscribe((todo: ToDoItem) => {
-        this.toastService.show('New task is added', 'success');
+      tap((todo: ToDoItem) => {
         this.formDirective().resetForm();
         this.#router.navigate(['/backlog', todo.id]);
-      });
+      }),
+      switchMap(() => this.toastService.show('New task is added', 'success')),
+      finalize(() => this.submitting.set(false)),
+    ).subscribe();
   }
 }
 

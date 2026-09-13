@@ -1,17 +1,18 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ToastService } from '../services/toast-service';
 import { Toast } from '../interfaces/toast';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-toast-component',
-  imports: [],
+  imports: [AsyncPipe],
   templateUrl: './toast-component.html',
   styleUrl: './toast-component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToastComponent {
   readonly toastService = inject(ToastService);
-  readonly toasts = this.toastService.toasts;
+  readonly toasts$ = this.toastService.toasts$;
 
   toastTypeClass(type?: Toast['type']) {
     if (!type) return 'toast-info';
@@ -19,6 +20,6 @@ export class ToastComponent {
   }
 
   dismiss(id: number) {
-    this.toastService.dismiss(id);
+    this.toastService.dismiss(id).subscribe();
   }
 }

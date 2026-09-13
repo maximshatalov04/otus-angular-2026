@@ -4,7 +4,7 @@ import { ToDoStatusBar } from '../to-do-status-bar/to-do-status-bar';
 import { ToDoService } from '../services/to-do-service';
 import { ToastService } from '../services/toast-service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { finalize } from 'rxjs';
+import { finalize, switchMap } from 'rxjs';
 import { MatFormField } from '@angular/material/form-field';
 import { ClickOutsideDirective } from '../directives/click-outside-directive';
 import { TemplatedButton } from '../ui/templated-button/templated-button';
@@ -40,11 +40,12 @@ export class ToDoItemView {
 
     this.#state.update(updatedItem).pipe(
       takeUntilDestroyed(this.#destroyRef),
+      switchMap(() => this.#toastService.show("Task status is updated", "info")),
       finalize(() => {
         this.textInEditModeId.set(false);
         this.descriptionInEditModeId.set(false);
       }))
-      .subscribe(() => this.#toastService.show("Task status is updated", "info"));
+      .subscribe();
   }
 
   onSetTextEditing() {
@@ -62,8 +63,9 @@ export class ToDoItemView {
 
     this.#state.update(updatedItem).pipe(
       takeUntilDestroyed(this.#destroyRef),
+      switchMap(() => this.#toastService.show("Task is updated", "info")),
       finalize(() => this.textInEditModeId.set(false)))
-      .subscribe(() => this.#toastService.show("Task is updated", "info"));
+      .subscribe();
   }
 
   onDescriptionSaved() {
@@ -71,8 +73,9 @@ export class ToDoItemView {
 
     this.#state.update(updatedItem).pipe(
       takeUntilDestroyed(this.#destroyRef),
+      switchMap(() => this.#toastService.show("Task is updated", "info")),
       finalize(() => this.descriptionInEditModeId.set(false)))
-      .subscribe(() => this.#toastService.show("Task is updated", "info"));
+      .subscribe();
   }
 
   isEmpty(text: string | undefined) {

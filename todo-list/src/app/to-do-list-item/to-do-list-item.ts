@@ -8,7 +8,7 @@ import { MatFormField } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
-import { finalize, take } from 'rxjs';
+import { finalize, switchMap, take } from 'rxjs';
 import { ToastService } from '../services/toast-service';
 import { ClickOutsideDirective } from '../directives/click-outside-directive';
 import { ToDoItemStatus } from '../constants/item-statuses';
@@ -32,8 +32,10 @@ export class ToDoListItem {
   readonly textInEditModeId = signal(false);
 
   onItemDeleted(id: string) {
-    this.state.delete(id).pipe(take(1))
-      .subscribe(() => this.toastService.show("Task is deleted", "warning"));
+    this.state.delete(id).pipe(
+      take(1),
+      switchMap(() => this.toastService.show("Task is deleted", "warning")))
+      .subscribe();
   }
 
   onSetEditing() {
@@ -46,8 +48,9 @@ export class ToDoListItem {
 
     this.state.update(updatedItem).pipe(
       take(1),
+      switchMap(() => this.toastService.show("Task status is updated", "info")),
       finalize(() => this.textInEditModeId.set(false)))
-      .subscribe(() => this.toastService.show("Task is updated", "info"));
+      .subscribe();
   }
 
   onStatusChanged() {
@@ -56,8 +59,9 @@ export class ToDoListItem {
 
     this.state.update(updatedItem).pipe(
       take(1),
+      switchMap(() => this.toastService.show("Task status is updated", "info")),
       finalize(() => this.textInEditModeId.set(false)))
-      .subscribe(() => this.toastService.show("Task status is updated", "info"));
+      .subscribe();
   }
 
   isEmpty(text: string | undefined) {

@@ -44,7 +44,7 @@ export class ToDoService {
         this.#patch({ error: error.message });
         return this.toastService.show("Can't load todos", 'error').pipe(
           switchMap(() => EMPTY),
-          catchError(() => EMPTY)
+          catchError(() => EMPTY),
         );
       }),
       finalize(() => this.#patch({ loading: false })),
@@ -73,7 +73,7 @@ export class ToDoService {
         this.#patch({ error: error.message });
         return this.toastService.show("Can't add the task", 'error').pipe(
           switchMap(() => EMPTY),
-          catchError(() => EMPTY)
+          catchError(() => EMPTY),
         );
       }),
       finalize(() => this.#patch({ loading: false })),
@@ -92,7 +92,7 @@ export class ToDoService {
         this.#patch({ error: error.message });
         return this.toastService.show("Can't delete the task", 'error').pipe(
           switchMap(() => EMPTY),
-          catchError(() => EMPTY)
+          catchError(() => EMPTY),
         );
       }),
       finalize(() => this.#patch({ loading: false })),
@@ -120,7 +120,7 @@ export class ToDoService {
         this.#patch({ error: error.message });
         return this.toastService.show("Can't update the task", 'error').pipe(
           switchMap(() => EMPTY),
-          catchError(() => EMPTY)
+          catchError(() => EMPTY),
         );
       }),
       finalize(() => this.#patch({ loading: false })),

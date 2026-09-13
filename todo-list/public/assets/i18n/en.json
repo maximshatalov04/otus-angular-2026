@@ -1,0 +1,20 @@
+{
+    "LAYOUT": {
+        "APP_NAME": "Tasks Board",
+        "BOARD": "Board",
+        "BACKLOG": "Backlog"
+    },
+    "BACKLOG": {
+        "STATUS": "Status",
+        "TASK": "Task",
+        "TASK_PLACEHOLDER": "Add your new ToDo",
+        "DESCRIPTION": "Description",
+        "DESCRIPTION_PLACEHOLDER": "Add your new ToDo description"
+    },
+    "STATUS": {
+        "TO_DO": "To Do",
+        "IN_PROGRESS": "In Progress",
+        "COMPLETED": "Completed",
+        "ALL": "All"
+    }
+}

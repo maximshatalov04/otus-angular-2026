@@ -1,6 +1,6 @@
 <app-to-do-status-bar [status]="todo().status" (statusChanged)="onStatusChanged($event)" />
 <div class="task-title">
-    <p class="label">task:</p>
+    <p class="label">{{ 'BACKLOG.TASK' | translate }}:</p>
     @if(textInEditModeId()){
     <div class="item-container item-container--title" appClickOutside (appClickOutside)="textInEditModeId.set(false)">
         <mat-form-field appearance="outline" class="form-field">
@@ -22,7 +22,7 @@
     }
 </div>
 <div class="task-description">
-    <p class="label">description:</p>
+    <p class="label"> {{ 'BACKLOG.DESCRIPTION' | translate }}:</p>
     @if(descriptionInEditModeId()){
     <div class="item-container description-container" appClickOutside
         (appClickOutside)="descriptionInEditModeId.set(false)">

@@ -3,7 +3,7 @@
     <li>
         <button class="status-button" [class.active]="status() === option" appTooltip="Change status"
             (click)="onStatusChanged(option)">
-            {{ statusOptions[option] }}
+            {{ statusOptions[option] | translate }}
         </button>
     </li>
     }

@@ -13,10 +13,19 @@ import { MatIcon } from '@angular/material/icon';
 import { TooltipDirective } from "../directives/tooltip";
 import { MatInput } from '@angular/material/input';
 import { ToDoItemStatus } from '../constants/item-statuses';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-to-do-item-view',
-  imports: [ToDoStatusBar, MatFormField, ClickOutsideDirective, TemplatedButton, FormsModule, MatIcon, TooltipDirective, MatInput],
+  imports: [ToDoStatusBar,
+    MatFormField,
+    ClickOutsideDirective,
+    TemplatedButton,
+    FormsModule,
+    MatIcon,
+    TooltipDirective,
+    MatInput,
+    TranslatePipe],
   templateUrl: './to-do-item-view.html',
   styleUrl: './to-do-item-view.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

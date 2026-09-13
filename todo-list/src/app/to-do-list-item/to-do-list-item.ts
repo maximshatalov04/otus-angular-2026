@@ -15,7 +15,14 @@ import { ToDoItemStatus } from '../constants/item-statuses';
 
 @Component({
   selector: 'app-to-do-list-item',
-  imports: [FormsModule, MatIconModule, TemplatedButton, TooltipDirective, MatFormField, MatInputModule, MatCheckbox, ClickOutsideDirective],
+  imports: [FormsModule,
+    MatIconModule,
+    TemplatedButton,
+    TooltipDirective,
+    MatFormField,
+    MatInputModule,
+    MatCheckbox,
+    ClickOutsideDirective],
   templateUrl: './to-do-list-item.html',
   styleUrl: './to-do-list-item.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -11,10 +11,17 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { finalize, switchMap, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToDoItem } from '../interfaces/to-do-item';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-to-do-create-item',
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, TemplatedButton, MatIconModule, TooltipDirective],
+  imports: [ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    TemplatedButton,
+    MatIconModule,
+    TooltipDirective,
+    TranslatePipe],
   templateUrl: './to-do-create-item.html',
   styleUrl: './to-do-create-item.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

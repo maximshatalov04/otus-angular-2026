@@ -56,8 +56,30 @@
     background: var(--secondary-bg-color);
     color: #f8fafc;
     display: flex;
+    justify-content: space-between;
     height: 70px;
     font-size: 1.6rem;
     padding: 20px;
     border-bottom: 1px solid #222b39;
+}
+
+.language-button {
+    background: none;
+    border: 1px solid currentColor;
+    color: inherit;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    height: 30px;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.08);
+        border-color: currentColor;
+    }
+
+    &:active {
+        background-color: rgba(0, 0, 0, 0.12);
+    }
 }

@@ -6,7 +6,10 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-to-do-list',
-  imports: [ToDoCreateItem, ToastComponent, ItemsFilter, RouterOutlet],
+  imports: [ToDoCreateItem,
+    ToastComponent,
+    ItemsFilter,
+    RouterOutlet],
   templateUrl: './to-do-list.html',
   styleUrl: './to-do-list.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

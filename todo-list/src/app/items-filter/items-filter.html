@@ -1,9 +1,9 @@
 <mat-form-field appearance="outline" class="form-field">
-    <mat-label>Статус</mat-label>
+    <mat-label>{{ 'BACKLOG.STATUS' | translate }}</mat-label>
     <mat-select [value]="state.selectedStatus()" (valueChange)="onFilterChange($event)">
         @for (filter of filterOrder ; track filter) {
         <mat-option [value]="filter">
-            {{ filterOptions[filter] }}
+            {{ filterOptions[filter] | translate }}
         </mat-option>
         }
     </mat-select>

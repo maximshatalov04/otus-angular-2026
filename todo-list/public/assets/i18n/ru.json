@@ -1,0 +1,20 @@
+{
+    "LAYOUT": {
+        "APP_NAME": "Доска задач",
+        "BOARD": "Доска",
+        "BACKLOG": "Бэклог"
+    },
+    "BACKLOG": {
+        "STATUS": "Статус",
+        "TASK": "Задача",
+        "TASK_PLACEHOLDER": "Добавьте новую задачу",
+        "DESCRIPTION": "Описание задачи",
+        "DESCRIPTION_PLACEHOLDER": "Добавьте описание новой задачи"
+    },
+    "STATUS": {
+        "TO_DO": "Новые",
+        "IN_PROGRESS": "В работе",
+        "COMPLETED": "Завершенные",
+        "ALL": "Все"
+    }
+}

@@ -8,7 +8,9 @@ import { STATUS_ORDER } from '../constants/item-statuses';
 
 @Component({
   selector: 'app-board',
-  imports: [Spinner, BoardColumn, FilterByStatusPipe],
+  imports: [Spinner,
+    BoardColumn,
+    FilterByStatusPipe],
   templateUrl: './board.html',
   styleUrl: './board.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

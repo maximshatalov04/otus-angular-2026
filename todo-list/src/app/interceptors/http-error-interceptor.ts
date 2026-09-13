@@ -26,7 +26,7 @@ export const HttpErrorInterceptor: HttpInterceptorFn = (
       // Возвращаем поток, который вызывает show(), а затем завершается.
       return toastService.show(message, 'error').pipe(
         // После показа тоста продолжаем поток с ошибкой для потребителя
-        () => throwError(() => new Error(message))
+        () => throwError(() => new Error(message)),
       );
     }),
   );

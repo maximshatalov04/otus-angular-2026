@@ -34,6 +34,13 @@ module.exports = defineConfig([
         },
       ],
       "comma-dangle": ["error", "always-multiline"],
+      "array-element-newline": [
+        "error",
+        {
+          "multiline": true,
+          "minItems": 3 // Выстроит в колонку, если в массиве imports 3 или более элементов
+        }
+      ]
     },
   },
   {

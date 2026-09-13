@@ -16,5 +16,13 @@
         "IN_PROGRESS": "В работе",
         "COMPLETED": "Завершенные",
         "ALL": "Все"
+    },
+    "TOOLTIP": {
+        "ADD_TASK": "Добавить задачу",
+        "DOUBLE_CLICK_TO_EDIT": "Двойной клик для редактирования",
+        "SAVE": "Сохранить",
+        "DELETE_TASK": "Удалить задачу",
+        "CHANGE_STATUS": "Изменить статус",
+        "CHANGE_LANGUAGE": "Сменить язык"
     }
 }

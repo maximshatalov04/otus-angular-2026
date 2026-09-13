@@ -12,6 +12,7 @@ import { finalize, switchMap, take } from 'rxjs';
 import { ToastService } from '../services/toast-service';
 import { ClickOutsideDirective } from '../directives/click-outside-directive';
 import { ToDoItemStatus } from '../constants/item-statuses';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-to-do-list-item',
@@ -22,6 +23,7 @@ import { ToDoItemStatus } from '../constants/item-statuses';
     MatFormField,
     MatInputModule,
     MatCheckbox,
+    TranslatePipe,
     ClickOutsideDirective],
   templateUrl: './to-do-list-item.html',
   styleUrl: './to-do-list-item.scss',

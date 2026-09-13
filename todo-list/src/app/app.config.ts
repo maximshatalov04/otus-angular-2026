@@ -1,12 +1,6 @@
-import {
- ApplicationConfig, provideBrowserGlobalErrorListeners, 
-} from '@angular/core';
-import {
- provideRouter, withComponentInputBinding, withDebugTracing, 
-} from '@angular/router';
-import {
- provideHttpClient, withInterceptors, 
-} from '@angular/common/http';
+import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { provideRouter, withComponentInputBinding, withDebugTracing } from '@angular/router';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { HttpErrorInterceptor } from './interceptors/http-error-interceptor';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';

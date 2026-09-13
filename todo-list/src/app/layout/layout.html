@@ -23,7 +23,8 @@
     <main class="main-content">
         <app-title-bar class="title-bar">
             <p>{{title()}}</p>
-            <button class="language-button" (click)="toggleLanguage()">
+            <button class="language-button" appTooltip="{{ 'TOOLTIP.CHANGE_LANGUAGE' | translate }}"
+                (click)="toggleLanguage()">
                 {{ buttonLabel() }}
             </button>
         </app-title-bar>

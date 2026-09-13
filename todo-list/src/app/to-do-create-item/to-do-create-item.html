@@ -11,8 +11,8 @@
             }
         </mat-form-field>
 
-        <app-templated-button class="button button--add" appTooltip="Add task" buttonType="submit"
-            [isDisabled]="form.invalid || submitting()" bgColor="var(--primary-bg-color)">
+        <app-templated-button class="button button--add" appTooltip="{{ 'TOOLTIP.ADD_TASK' | translate }}"
+            buttonType="submit" [isDisabled]="form.invalid || submitting()" bgColor="var(--primary-bg-color)">
             <span class="add-icon">
                 <mat-icon>add</mat-icon>
             </span>

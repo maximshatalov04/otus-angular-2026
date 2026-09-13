@@ -16,5 +16,13 @@
         "IN_PROGRESS": "In Progress",
         "COMPLETED": "Completed",
         "ALL": "All"
+    },
+    "TOOLTIP": {
+        "ADD_TASK": "Add task",
+        "DOUBLE_CLICK_TO_EDIT": "Double click to Edit",
+        "SAVE": "Save",
+        "DELETE_TASK": "Delete task",
+        "CHANGE_STATUS": "Change status",
+        "CHANGE_LANGUAGE": "Change language"
     }
 }

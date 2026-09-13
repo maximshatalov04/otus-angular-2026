@@ -5,6 +5,7 @@ import { TitleBar } from '../title-bar/title-bar';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map, switchMap } from 'rxjs';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TooltipDirective } from '../directives/tooltip';
 
 @Component({
   selector: 'app-layout',
@@ -13,6 +14,7 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
     RouterLink,
     RouterLinkActive,
     TitleBar,
+    TooltipDirective,
     TranslatePipe],
   templateUrl: './layout.html',
   styleUrl: './layout.scss',

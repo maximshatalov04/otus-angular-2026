@@ -12,7 +12,7 @@ import { finalize, switchMap, take } from 'rxjs';
 import { ToastService } from '../services/toast-service';
 import { ClickOutsideDirective } from '../directives/click-outside-directive';
 import { ToDoItemStatus } from '../constants/item-statuses';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-to-do-list-item',
@@ -30,8 +30,10 @@ import { TranslatePipe } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToDoListItem {
-  readonly state = inject(ToDoService);
-  readonly toastService = inject(ToastService);
+  readonly #translate = inject(TranslateService);
+  readonly #state = inject(ToDoService);
+  readonly #toastService = inject(ToastService);
+
   readonly item = input.required<ToDoItem>();
   readonly isCompleted = linkedSignal<boolean>(() => this.item().status === 'Completed');
   readonly isInputEmpty = computed(() =>
@@ -41,9 +43,9 @@ export class ToDoListItem {
   readonly textInEditModeId = signal(false);
 
   onItemDeleted(id: string) {
-    this.state.delete(id).pipe(
+    this.#state.delete(id).pipe(
       take(1),
-      switchMap(() => this.toastService.show("Task is deleted", "warning")))
+      switchMap(() => this.#toastService.show(this.#translate.instant('TOAST.TASK_DELETED_SUCCESS'), "warning")))
       .subscribe();
   }
 
@@ -55,9 +57,9 @@ export class ToDoListItem {
   onItemSaved() {
     const updatedItem = { ... this.item(), text: this.localText() };
 
-    this.state.update(updatedItem).pipe(
+    this.#state.update(updatedItem).pipe(
       take(1),
-      switchMap(() => this.toastService.show("Task status is updated", "info")),
+      switchMap(() => this.#toastService.show(this.#translate.instant('TOAST.TASK_STATUS_UPDATED'), "info")),
       finalize(() => this.textInEditModeId.set(false)))
       .subscribe();
   }
@@ -66,9 +68,9 @@ export class ToDoListItem {
     const status: ToDoItemStatus = this.isCompleted() ? 'Completed' : 'InProgress';
     const updatedItem = { ... this.item(), status };
 
-    this.state.update(updatedItem).pipe(
+    this.#state.update(updatedItem).pipe(
       take(1),
-      switchMap(() => this.toastService.show("Task status is updated", "info")),
+      switchMap(() => this.#toastService.show(this.#translate.instant('TOAST.TASK_STATUS_UPDATED'), "info")),
       finalize(() => this.textInEditModeId.set(false)))
       .subscribe();
   }

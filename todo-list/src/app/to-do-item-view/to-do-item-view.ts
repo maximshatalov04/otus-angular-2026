@@ -13,7 +13,7 @@ import { MatIcon } from '@angular/material/icon';
 import { TooltipDirective } from "../directives/tooltip";
 import { MatInput } from '@angular/material/input';
 import { ToDoItemStatus } from '../constants/item-statuses';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-to-do-item-view',
@@ -34,6 +34,7 @@ export class ToDoItemView {
   readonly #destroyRef = inject(DestroyRef);
   readonly #state = inject(ToDoService);
   readonly #toastService = inject(ToastService);
+  readonly #translate = inject(TranslateService);
 
   readonly todo = input.required<ToDoItem>();
   readonly textInEditModeId = signal(false);
@@ -49,7 +50,7 @@ export class ToDoItemView {
 
     this.#state.update(updatedItem).pipe(
       takeUntilDestroyed(this.#destroyRef),
-      switchMap(() => this.#toastService.show("Task status is updated", "info")),
+      switchMap(() => this.#toastService.show(this.#translate.instant('TOAST.TASK_STATUS_UPDATED'), "info")),
       finalize(() => {
         this.textInEditModeId.set(false);
         this.descriptionInEditModeId.set(false);
@@ -72,7 +73,7 @@ export class ToDoItemView {
 
     this.#state.update(updatedItem).pipe(
       takeUntilDestroyed(this.#destroyRef),
-      switchMap(() => this.#toastService.show("Task is updated", "info")),
+      switchMap(() => this.#toastService.show(this.#translate.instant('TOAST.TASK_UPDATED_SUCCESS'), "info")),
       finalize(() => this.textInEditModeId.set(false)))
       .subscribe();
   }
@@ -82,7 +83,7 @@ export class ToDoItemView {
 
     this.#state.update(updatedItem).pipe(
       takeUntilDestroyed(this.#destroyRef),
-      switchMap(() => this.#toastService.show("Task is updated", "info")),
+      switchMap(() => this.#toastService.show(this.#translate.instant('TOAST.TASK_UPDATED_SUCCESS'), "info")),
       finalize(() => this.descriptionInEditModeId.set(false)))
       .subscribe();
   }

@@ -24,5 +24,15 @@
         "DELETE_TASK": "Удалить задачу",
         "CHANGE_STATUS": "Изменить статус",
         "CHANGE_LANGUAGE": "Сменить язык"
+    },
+    "TOAST": {
+        "CANNOT_LOAD_TODOS": "Не удалось загрузить задачи",
+        "CANNOT_ADD_TASK": "Не удалось добавить задачу",
+        "CANNOT_DELETE_TASK": "Не удалось удалить задачу",
+        "CANNOT_UPDATE_TASK": "Не удалось обновить задачу",
+        "TASK_ADDED_SUCCESS": "Задача успешно добавлена",
+        "TASK_STATUS_UPDATED": "Статус задачи обновлён",
+        "TASK_UPDATED_SUCCESS": "Задача обновлена",
+        "TASK_DELETED_SUCCESS": "Задача удалена"
     }
 }

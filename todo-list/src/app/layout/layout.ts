@@ -6,6 +6,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map, switchMap } from 'rxjs';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { TooltipDirective } from '../directives/tooltip';
+import { ToastComponent } from '../toast-component/toast-component';
 
 @Component({
   selector: 'app-layout',
@@ -14,6 +15,7 @@ import { TooltipDirective } from '../directives/tooltip';
     RouterLink,
     RouterLinkActive,
     TitleBar,
+    ToastComponent,
     TooltipDirective,
     TranslatePipe],
   templateUrl: './layout.html',

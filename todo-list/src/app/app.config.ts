@@ -1,10 +1,11 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter, withComponentInputBinding, withDebugTracing } from '@angular/router';
+import { provideRouter, TitleStrategy, withComponentInputBinding, withDebugTracing } from '@angular/router';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { HttpErrorInterceptor } from './interceptors/http-error-interceptor';
 import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { routes } from './app.routes';
+import { TitleTranslateStrategy } from './services/title-translate-strategy';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,7 +13,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(
       routes,
       withComponentInputBinding(),
-      withDebugTracing(),
+      withDebugTracing()
     ),
     provideHttpClient(withInterceptors([HttpErrorInterceptor])),
     provideTranslateService({
@@ -23,5 +24,9 @@ export const appConfig: ApplicationConfig = {
         suffix: '.json', // расширение файлов
       }),
     }),
+    {
+      provide: TitleStrategy,
+      useExisting: TitleTranslateStrategy,
+    },
   ],
 };

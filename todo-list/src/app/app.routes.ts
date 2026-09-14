@@ -8,12 +8,11 @@ export const routes: Routes = [
   {
     path: 'backlog',
     component: Backlog,
-    title: 'Backlog',
+    title: 'LAYOUT.BACKLOG',
     children: [
-      { path: '', component: ToDoListContainer },
-      { path: ':id', component: ToDoListContainer }, // /backlog/1
+      { path: '', component: ToDoListContainer }, { path: ':id', component: ToDoListContainer }, // /backlog/1
     ],
   },
-  { path: 'board', component: Board, title: 'Board' },
+  { path: 'board', component: Board, title: 'LAYOUT.BOARD' },
   { path: '**', redirectTo: '/backlog' },
 ];

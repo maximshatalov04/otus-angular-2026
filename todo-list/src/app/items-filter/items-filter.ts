@@ -5,10 +5,16 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOption, MatSelect } from '@angular/material/select';
 import { FILTER_ORDER, STATUS_FILTERS, ToDoItemStatus } from '../constants/item-statuses';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-items-filter',
-  imports: [FormsModule, MatLabel, MatFormFieldModule, MatSelect, MatOption],
+  imports: [FormsModule,
+    MatLabel,
+    MatFormFieldModule,
+    MatSelect,
+    MatOption,
+    TranslatePipe],
   templateUrl: './items-filter.html',
   styleUrl: './items-filter.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

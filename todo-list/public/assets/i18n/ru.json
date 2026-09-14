@@ -1,0 +1,42 @@
+{
+    "LAYOUT": {
+        "APP_NAME": "Доска задач",
+        "BOARD": "Доска",
+        "BACKLOG": "Бэклог"
+    },
+    "BACKLOG": {
+        "STATUS": "Статус",
+        "TASK": "Задача",
+        "TASK_PLACEHOLDER": "Добавьте новую задачу",
+        "DESCRIPTION": "Описание задачи",
+        "DESCRIPTION_PLACEHOLDER": "Добавьте описание новой задачи"
+    },
+    "STATUS": {
+        "TO_DO": "Новые",
+        "IN_PROGRESS": "В работе",
+        "COMPLETED": "Завершенные",
+        "ALL": "Все"
+    },
+    "TOOLTIP": {
+        "ADD_TASK": "Добавить задачу",
+        "DOUBLE_CLICK_TO_EDIT": "Двойной клик для редактирования",
+        "SAVE": "Сохранить",
+        "DELETE_TASK": "Удалить задачу",
+        "CHANGE_STATUS": "Изменить статус",
+        "CHANGE_LANGUAGE": "Сменить язык"
+    },
+    "TOAST": {
+        "CANNOT_LOAD_TODOS": "Не удалось загрузить задачи",
+        "CANNOT_ADD_TASK": "Не удалось добавить задачу",
+        "CANNOT_DELETE_TASK": "Не удалось удалить задачу",
+        "CANNOT_UPDATE_TASK": "Не удалось обновить задачу",
+        "TASK_ADDED_SUCCESS": "Задача успешно добавлена",
+        "TASK_STATUS_UPDATED": "Статус задачи обновлён",
+        "TASK_UPDATED_SUCCESS": "Задача обновлена",
+        "TASK_DELETED_SUCCESS": "Задача удалена"
+    },
+    "VALIDATOR": {
+        "TASK_TITLE_IS_REQUIRED": "Название задачи обязательно",
+        "MIN_LENGTH": "Минимальная длина составляет"
+    }
+}

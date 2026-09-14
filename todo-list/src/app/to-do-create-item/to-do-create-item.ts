@@ -11,10 +11,17 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { finalize, switchMap, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToDoItem } from '../interfaces/to-do-item';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-to-do-create-item',
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, TemplatedButton, MatIconModule, TooltipDirective],
+  imports: [ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    TemplatedButton,
+    MatIconModule,
+    TooltipDirective,
+    TranslatePipe],
   templateUrl: './to-do-create-item.html',
   styleUrl: './to-do-create-item.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,6 +29,7 @@ import { ToDoItem } from '../interfaces/to-do-item';
 export class ToDoCreateItem {
   readonly #router = inject(Router);
   readonly #destroyRef = inject(DestroyRef);
+  readonly #translate = inject(TranslateService);
   readonly state = inject(ToDoService);
   readonly toastService = inject(ToastService);
   readonly submitting = signal(false);
@@ -49,7 +57,7 @@ export class ToDoCreateItem {
         this.formDirective().resetForm();
         this.#router.navigate(['/backlog', todo.id]);
       }),
-      switchMap(() => this.toastService.show('New task is added', 'success')),
+      switchMap(() => this.toastService.show(this.#translate.instant('TOAST.TASK_ADDED_SUCCESS'), 'success')),
       finalize(() => this.submitting.set(false)),
     ).subscribe();
   }

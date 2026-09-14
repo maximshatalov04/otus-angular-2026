@@ -5,10 +5,10 @@ const COMPLETED = 'Completed';
 const ALL = 'All';
 
 // Labels
-const TO_DO_LABEL = 'To Do';
-const IN_PROGRESS_LABEL = 'In Progress';
-const COMPLETED_LABEL = 'Completed';
-const ALL_LABEL = 'All';
+const TO_DO_LABEL = 'STATUS.TO_DO';
+const IN_PROGRESS_LABEL = 'STATUS.IN_PROGRESS';
+const COMPLETED_LABEL = 'STATUS.COMPLETED';
+const ALL_LABEL = 'STATUS.ALL';
 
 export type ToDoItemStatus = typeof TO_DO | typeof IN_PROGRESS | typeof COMPLETED;
 export type StatusFilter = ToDoItemStatus | 'All';

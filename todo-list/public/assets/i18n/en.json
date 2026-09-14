@@ -1,0 +1,42 @@
+{
+    "LAYOUT": {
+        "APP_NAME": "Tasks Board",
+        "BOARD": "Board",
+        "BACKLOG": "Backlog"
+    },
+    "BACKLOG": {
+        "STATUS": "Status",
+        "TASK": "Task",
+        "TASK_PLACEHOLDER": "Add your new ToDo",
+        "DESCRIPTION": "Description",
+        "DESCRIPTION_PLACEHOLDER": "Add your new ToDo description"
+    },
+    "STATUS": {
+        "TO_DO": "To Do",
+        "IN_PROGRESS": "In Progress",
+        "COMPLETED": "Completed",
+        "ALL": "All"
+    },
+    "TOOLTIP": {
+        "ADD_TASK": "Add task",
+        "DOUBLE_CLICK_TO_EDIT": "Double click to Edit",
+        "SAVE": "Save",
+        "DELETE_TASK": "Delete task",
+        "CHANGE_STATUS": "Change status",
+        "CHANGE_LANGUAGE": "Change language"
+    },
+    "TOAST": {
+        "CANNOT_LOAD_TODOS": "Can't load todos",
+        "CANNOT_ADD_TASK": "Can't add the task",
+        "CANNOT_DELETE_TASK": "Can't delete the task",
+        "CANNOT_UPDATE_TASK": "Can't update the task",
+        "TASK_ADDED_SUCCESS": "New task is added",
+        "TASK_STATUS_UPDATED": "Task status is updated",
+        "TASK_UPDATED_SUCCESS": "Task is updated",
+        "TASK_DELETED_SUCCESS": "Task is deleted"
+    },
+    "VALIDATOR": {
+        "TASK_TITLE_IS_REQUIRED": "Task title is required",
+        "MIN_LENGTH": "Min length is"
+    }
+}

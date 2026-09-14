@@ -1,38 +1,27 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
     <div class="form-row">
         <mat-form-field appearance="outline" class="form-field">
-            <input 
-                class="form-input" 
-                matInput 
-                type = "text" 
-                [formControl] = "form.controls.text"
-                placeholder="Add your new ToDo">
+            <input class="form-input" matInput type="text" [formControl]="form.controls.text"
+                placeholder="{{ 'BACKLOG.TASK_PLACEHOLDER' | translate }}">
             @if (form.controls.text.hasError('required') && form.controls.text.touched) {
-                <span class="error">Task title is required</span>
+            <span class="error">{{ 'VALIDATOR.TASK_TITLE_IS_REQUIRED' | translate}}</span>
             }
             @else if (form.controls.text.hasError('minlength') && form.controls.text.touched) {
-                <span class="error">Min length is {{form.controls.text.errors?.['minlength']?.requiredLength}}</span>
+            <span class="error">{{ 'VALIDATOR.MIN_LENGTH' | translate}}
+                {{form.controls.text.errors?.['minlength']?.requiredLength}}</span>
             }
         </mat-form-field>
 
-        <app-templated-button class="button button--add" 
-            appTooltip="Add task"
-            buttonType="submit"
-            [isDisabled]="form.invalid || submitting()"
-            bgColor="var(--primary-bg-color)">
-                <span class="add-icon">
+        <app-templated-button class="button button--add" appTooltip="{{ 'TOOLTIP.ADD_TASK' | translate }}"
+            buttonType="submit" [isDisabled]="form.invalid || submitting()" bgColor="var(--primary-bg-color)">
+            <span class="add-icon">
                 <mat-icon>add</mat-icon>
             </span>
         </app-templated-button>
     </div>
- 
+
     <mat-form-field appearance="outline" class="form-row form-text-area">
-        <textarea 
-            class="form-input" 
-            matInput 
-            type = "text" 
-            [formControl] = "form.controls.description"
-            placeholder="Add your new ToDo description"></textarea>
+        <textarea class="form-input" matInput type="text" [formControl]="form.controls.description"
+            placeholder="{{ 'BACKLOG.DESCRIPTION_PLACEHOLDER' | translate }}"></textarea>
     </mat-form-field>
 </form>
-

@@ -1,10 +1,13 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { TooltipDirective } from "../directives/tooltip";
 import { STATUS_OPTIONS, STATUS_ORDER, ToDoItemStatus } from '../constants/item-statuses';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-to-do-status-bar',
-  imports: [TooltipDirective, TooltipDirective],
+  imports: [TooltipDirective,
+    TooltipDirective,
+    TranslatePipe],
   templateUrl: './to-do-status-bar.html',
   styleUrl: './to-do-status-bar.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
